@@ -16,6 +16,25 @@ class CarouselPageViewController: UIPageViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+            let subViews: Array = view.subviews
+            var scrollView: UIScrollView? = nil
+            var pageControl: UIPageControl? = nil
+            for view in subViews {
+                
+                if view.isKind(of: UIScrollView.self) {
+                    scrollView = view as? UIScrollView
+                }else if view.isKind(of: UIPageControl.self) {
+                    pageControl = view as? UIPageControl
+                }
+            }
+            if (scrollView != nil && pageControl != nil) {
+                scrollView?.frame = view.bounds
+                view.bringSubviewToFront(pageControl!)
+            }
+        }
+    
     fileprivate func decoratePageControl() {
         let pc = UIPageControl.appearance(whenContainedInInstancesOf: [CarouselPageViewController.self])
         pc.currentPageIndicatorTintColor = UIColor(red: 2.0 / 255.0, green: 148.0 / 255.0, blue: 165.0 / 255.0, alpha: 0.4)

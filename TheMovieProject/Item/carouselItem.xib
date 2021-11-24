@@ -15,11 +15,11 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="Vvn-1z-KjY">
+        <view contentMode="scaleAspectFill" id="Vvn-1z-KjY">
             <rect key="frame" x="0.0" y="0.0" width="294" height="573"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxt-97-nOM">
+                <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxt-97-nOM">
                     <rect key="frame" x="0.0" y="0.0" width="294" height="573"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E31-ko-Sjw">
@@ -28,24 +28,24 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="E31-ko-Sjw" firstAttribute="leading" secondItem="vxt-97-nOM" secondAttribute="leading" id="6mj-uq-BOf"/>
-                        <constraint firstItem="E31-ko-Sjw" firstAttribute="top" secondItem="vxt-97-nOM" secondAttribute="top" id="GSQ-qJ-qAU"/>
-                        <constraint firstItem="E31-ko-Sjw" firstAttribute="centerY" secondItem="vxt-97-nOM" secondAttribute="centerY" id="bUf-E2-ONR"/>
-                        <constraint firstItem="E31-ko-Sjw" firstAttribute="centerX" secondItem="vxt-97-nOM" secondAttribute="centerX" id="pEd-CR-Vdl"/>
+                        <constraint firstAttribute="bottom" secondItem="E31-ko-Sjw" secondAttribute="bottom" id="0kX-yg-Qda"/>
+                        <constraint firstAttribute="trailing" secondItem="E31-ko-Sjw" secondAttribute="trailing" id="3ux-nP-eoE"/>
+                        <constraint firstItem="E31-ko-Sjw" firstAttribute="top" secondItem="vxt-97-nOM" secondAttribute="top" id="V25-17-nlO"/>
+                        <constraint firstItem="E31-ko-Sjw" firstAttribute="leading" secondItem="vxt-97-nOM" secondAttribute="leading" id="qG8-k5-oYI"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="HrN-89-52d"/>
             <constraints>
-                <constraint firstItem="vxt-97-nOM" firstAttribute="leading" secondItem="HrN-89-52d" secondAttribute="leading" id="2NH-Pd-CSf"/>
-                <constraint firstItem="vxt-97-nOM" firstAttribute="centerX" secondItem="Vvn-1z-KjY" secondAttribute="centerX" id="UI7-Ub-LvL"/>
-                <constraint firstItem="vxt-97-nOM" firstAttribute="centerY" secondItem="Vvn-1z-KjY" secondAttribute="centerY" id="tTJ-P3-Hvi"/>
-                <constraint firstItem="vxt-97-nOM" firstAttribute="bottom" secondItem="HrN-89-52d" secondAttribute="bottom" id="zxm-8Z-zIm"/>
+                <constraint firstItem="vxt-97-nOM" firstAttribute="leading" secondItem="HrN-89-52d" secondAttribute="leading" id="Kft-IL-y6S"/>
+                <constraint firstItem="HrN-89-52d" firstAttribute="bottom" secondItem="vxt-97-nOM" secondAttribute="bottom" id="Ved-0Z-93w"/>
+                <constraint firstItem="HrN-89-52d" firstAttribute="trailing" secondItem="vxt-97-nOM" secondAttribute="trailing" id="jWa-tq-sQk"/>
+                <constraint firstItem="HrN-89-52d" firstAttribute="top" secondItem="vxt-97-nOM" secondAttribute="top" constant="44" id="vfX-zN-Vg6"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="123.18840579710145" y="-97.433035714285708"/>
+            <point key="canvasLocation" x="118.84057971014494" y="-345.20089285714283"/>
         </view>
     </objects>
 </document>
