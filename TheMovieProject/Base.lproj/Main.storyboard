@@ -55,6 +55,9 @@
                                     <color key="baseForegroundColor" systemColor="secondarySystemBackgroundColor"/>
                                     <color key="baseBackgroundColor" red="0.0078431372550000003" green="0.58039215690000001" blue="0.64705882349999999" alpha="0.7525549882" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="wfH-33-XXM" kind="show" id="bOk-4J-SsE"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gWE-4a-vHq">
                                 <rect key="frame" x="282" y="765.33333333333337" width="19.666666666666686" height="14.666666666666629"/>
@@ -87,11 +90,11 @@
             <objects>
                 <viewController id="wfH-33-XXM" customClass="DiscoverViewController" customModule="TheMovieProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pTy-6z-hYv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="34h-ke-AER">
-                                <rect key="frame" x="20" y="151" width="374" height="182"/>
+                                <rect key="frame" x="20" y="107" width="374" height="172"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FXM-0m-mcL">
                                     <size key="itemSize" width="144" height="180"/>
@@ -150,6 +153,7 @@
                             <constraint firstItem="34h-ke-AER" firstAttribute="centerX" secondItem="ahe-Uj-X1M" secondAttribute="centerX" id="ySy-r6-Ms2"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="n9a-8c-qKc"/>
                     <connections>
                         <outlet property="MostPopulerMovies" destination="34h-ke-AER" id="jho-Zw-pQZ"/>
                     </connections>

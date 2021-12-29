@@ -9,8 +9,15 @@ import Foundation
 
 
 struct Movie: Codable {
-    let page: Int
-    let total_results: Int
-    let total_pages: Int
-    let results: [Result]
+    var page: Int
+    var total_results: Int
+    var total_pages: Int
+    var results: [Results]?
+    
+     enum CodingKeys: String,CodingKey {
+        case page =  "page"
+        case total_results = "total_results"
+        case total_pages = "total_pages"
+        case results = "results"
+    }
 }

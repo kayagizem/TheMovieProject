@@ -29,7 +29,7 @@ enum APIRouter: URLRequestConvertible {
        private var path: String {
            switch self {
            case .loadMovies(let api_key, let language, let page, _):
-               return "/movie/popular?\(api_key)/\(language)/\(page)"
+               return "/movie/popular?api_key=\(api_key)&language=\(language)/&page=\(page)"
            }
        }
        

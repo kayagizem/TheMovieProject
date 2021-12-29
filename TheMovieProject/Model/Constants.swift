@@ -10,7 +10,7 @@ import Foundation
 
 struct K {
     struct ProductionServer {
-        static let baseURL = "api.themoviedb.org/3"
+        static let baseURL = "https://api.themoviedb.org/3"
     }
     
     struct APIParameterKey {
