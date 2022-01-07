@@ -4,17 +4,20 @@
 //
 //  Created by gizem.kaya on 12.12.2021.
 //
-
+/*
 import Foundation
 import Alamofire
 
 enum UserEndpoint: APIConfiguration {
     
     case loadMovies(api_key: String, language: String, page: Int, region: String)
+    case loadUpcomingMovies(api_key: String, language: String, page: Int, region: String)
     
     internal var method: HTTPMethod {
            switch self {
            case .loadMovies(_, _, _, _):
+               return .get
+           case .loadUpcomingMovies(_, _, _, _):
                return .get
            }
        }
@@ -24,6 +27,9 @@ enum UserEndpoint: APIConfiguration {
         switch self {
         case .loadMovies(let api_key, let language, let page, _):
             return "/movie/popular?api_key=\(api_key)&language=\(language)&page=\(page)"
+        
+        case .loadUpcomingMovies(api_key: let api_key, language: let language, page: let page, region: let region):
+            
         }
     }
     
@@ -31,6 +37,8 @@ enum UserEndpoint: APIConfiguration {
     internal var parameters: Parameters? {
         switch self {
         case .loadMovies(api_key: _, language: _, page: _, region: _):
+            return nil
+        case .loadUpcomingMovies(api_key: _, language: _, page: _, region: _):
             return nil
         }
     }
@@ -60,3 +68,4 @@ enum UserEndpoint: APIConfiguration {
         return urlRequest
     }
 }
+*/

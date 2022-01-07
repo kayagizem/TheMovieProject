@@ -14,10 +14,11 @@ struct K {
     }
     
     struct APIParameterKey {
-        static let api_key = "dc190303aea87bdf6e4faa3d59de8c59"
+        static let api_key = "api_key"
         static let language = "language"
         static let page = "page"
         static let region = "region"
+        static let append_to_response = "append_to_response"
 
     }
 }
