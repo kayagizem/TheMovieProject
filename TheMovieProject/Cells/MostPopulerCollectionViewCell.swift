@@ -9,6 +9,8 @@ import UIKit
 
 class MostPopulerCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var MoviePoster: UIImageView!
     @IBOutlet weak var MovieLabel: UILabel!
-    @IBOutlet weak var MovieImage: UIImageView!
+    @IBOutlet weak var MovieDuration: UILabel!
+    
 }

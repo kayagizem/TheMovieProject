@@ -10,7 +10,7 @@ class CarouselPageViewController: UIPageViewController {
         dataSource = self
         decoratePageControl()
         populateItems()
-        
+  
         if let firstViewController = items.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }

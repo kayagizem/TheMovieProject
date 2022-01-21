@@ -7,17 +7,19 @@
 
 import Foundation
 
-
 struct Movie: Codable {
-    var page: Int
-    var total_results: Int
-    var total_pages: Int
-    var results: [Results]?
-    
-     enum CodingKeys: String,CodingKey {
-        case page =  "page"
-        case total_results = "total_results"
-        case total_pages = "total_pages"
-        case results = "results"
-    }
+    var vote_count: Int?
+    var id: Int?
+    var video: Bool?
+    var title: String?
+    var popularity: Double?
+    var original_language: String?
+    var original_title: String?
+    var genre_ids: [Int]?
+    var backdrop_path: String?
+    var adult: Bool?
+    var overview: String?
+    var release_date: String?
+    var vote_average: Double?
+    var poster_path: String?
 }
