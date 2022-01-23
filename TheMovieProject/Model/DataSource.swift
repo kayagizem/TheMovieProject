@@ -10,16 +10,15 @@ import UIKit
 import Alamofire
 
 class DataSource {
-    
+    var upcomingMoviesList: [Movie] = []
     var popularMoviesList: [Movie] = []
+    var nowPlayingMoviesList: [Movie] = []
     var delegate: DataSourceDelegate?
     
     func loadPopularMovies(){
         APIClient.loadPopularMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page:1, region:"US") { result in
             switch result{
             case .success(let movie):
-                print("\n popular \n")
-                print(movie.results!)
                 self.popularMoviesList.append(contentsOf: movie.results!)
                 
             case .failure(let error):
@@ -35,10 +34,12 @@ class DataSource {
         APIClient.loadUpcomingMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page:1, region:"US") { result in
             switch result{
             case .success(let movie):
-                print("\n upcomingMovies \n")
-                print(movie)
+                self.upcomingMoviesList.append(contentsOf: movie.results!)
             case .failure(let error):
                 print(error.localizedDescription)
+            }
+            DispatchQueue.main.async {
+                self.delegate?.UpcomingLoaded()
             }
         }
     }
@@ -48,10 +49,12 @@ class DataSource {
         TheMovieProject.APIClient.loadNow_PlayingMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page:1, region:"US") { result in
             switch result{
             case .success(let movie):
-                print("\n now_playing \n")
-                print(movie)
+                self.nowPlayingMoviesList.append(contentsOf: movie.results!)
             case .failure(let error):
                 print(error.localizedDescription)
+            }
+            DispatchQueue.main.async {
+                self.delegate?.NowPlayingLoaded()
             }
         }
     }
@@ -99,7 +102,23 @@ class DataSource {
         return popularMoviesList[realIndex]
     }
     
+    func getUpcomingMovieForIndex(index: Int) -> Movie{
+        let realIndex = index % upcomingMoviesList.count
+        return upcomingMoviesList[realIndex]
+    }
+    func getNowPlayingMovieForIndex(index: Int) -> Movie{
+        let realIndex = index % nowPlayingMoviesList.count
+        return nowPlayingMoviesList[realIndex]
+    }
+    
     func getNumberOfPopularMovies() -> Int{
         return popularMoviesList.count
+    }
+    
+    func getNumberOfUpcomingMovies() -> Int{
+        return upcomingMoviesList.count
+    }
+    func getNumberOfNowPlayingMovies() -> Int{
+        return nowPlayingMoviesList.count
     }
 }

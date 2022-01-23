@@ -12,6 +12,7 @@ import Foundation
 protocol DataSourceDelegate {
     
     func MostPopularLoaded()
-    
+    func UpcomingLoaded()
+    func NowPlayingLoaded()
     
 }
