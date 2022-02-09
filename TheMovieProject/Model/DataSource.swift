@@ -16,7 +16,7 @@ class DataSource {
     var delegate: DataSourceDelegate?
     
     func loadPopularMovies(){
-        APIClient.loadPopularMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page:1, region:"US") { result in
+        APIClient.loadPopularMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page: 1, region:"US") { result in
             switch result{
             case .success(let movie):
                 self.popularMoviesList.append(contentsOf: movie.results!)

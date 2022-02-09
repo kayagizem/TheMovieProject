@@ -14,10 +14,24 @@ import SDWebImage
 class DiscoverViewController: UIViewController, UICollectionViewDelegate {
     var contentOffset: CGFloat = 0
     
+  
+
+    @IBAction func UpcomingSeeAll(_ sender: Any) {
+        
+       let storyboard = UIStoryboard(name: "PopularMoviesAllView", bundle: nil)
+       let vc = storyboard.instantiateViewController(withIdentifier: "SeeMoviesViewController") as! SeeMoviesViewController
+       present(vc, animated: true, completion: nil)
+      // self.performSegue(withIdentifier: "toSeeAll", sender: self)
+
+
+    }
+    
+ 
     @IBOutlet weak var NowPlayingMovies: UICollectionView!
     @IBOutlet weak var UpcomingMovies: UICollectionView!
     @IBOutlet weak var PopularMovies: UICollectionView!
     
+  
     var dataSource = DataSource()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +42,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         
         
     }
+    
     
 }
 
@@ -71,27 +86,41 @@ extension DiscoverViewController: UICollectionViewDataSource {
             let movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
             cell.MovieLabel.text = movie.original_title
             cell.MovieDuration.text = "Duration"
-            let baseURL = "https://image.tmdb.org/t/p/original/"
-            let ImageURL = "\(baseURL)\(movie.poster_path ?? "")"
-            cell.MoviePoster.sd_setImage(with: URL(string:ImageURL ), placeholderImage: UIImage(named: "placeholder.png"))
+            var urlImage = ""
+            do {
+               urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie.poster_path ?? "")").asURLRequest().url?.absoluteString ?? ""
+            }catch{
+                error
+            }
+            cell.MoviePoster.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
             return cell
+            
         } else if collectionView == self.UpcomingMovies{
             let cellUpcoming = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingCell", for: indexPath) as! UpcomingCollectionViewCell
             let movie = dataSource.getUpcomingMovieForIndex(index: indexPath.row)
             cellUpcoming.MovieLabel.text = movie.original_title
             cellUpcoming.MovieDuration.text = "Duration"
-            let baseURL = "https://image.tmdb.org/t/p/original/"
-            let ImageURL = "\(baseURL)\(movie.poster_path ?? "")"
-            cellUpcoming.MoviePoster.sd_setImage(with: URL(string:ImageURL ), placeholderImage: UIImage(named: "placeholder.png"))
+            var urlImage = ""
+            do {
+               urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie.poster_path ?? "")").asURLRequest().url?.absoluteString ?? ""
+            }catch{
+                error
+            }
+            cellUpcoming.MoviePoster.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
             return cellUpcoming
+            
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowPlayingCell", for: indexPath) as! NowPlayingCollectionViewCell
             let movie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
             cell.MovieLabel.text = movie.original_title
             cell.MovieDuration.text = "Duration"
-            let baseURL = "https://image.tmdb.org/t/p/original/"
-            let ImageURL = "\(baseURL)\(movie.poster_path ?? "")"
-            cell.MoviePoster.sd_setImage(with: URL(string:ImageURL ), placeholderImage: UIImage(named: "placeholder.png"))
+            var urlImage = ""
+            do {
+               urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie.poster_path ?? "")").asURLRequest().url?.absoluteString ?? ""
+            }catch{
+                error
+            }
+            cell.MoviePoster.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
             return cell
             
         }

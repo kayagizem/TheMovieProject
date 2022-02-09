@@ -10,7 +10,14 @@ import Alamofire
 
 class APIClient {
     
-
+   static func loadImage(movie_poster_url: String, completion:@escaping (Result<Results,AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+        AF.request(APIRouter.loadImage(movie_poster_url: movie_poster_url))
+             .responseDecodable (decoder: jsonDecoder) { (response: DataResponse<Results,AFError>) in
+                     completion(response.result)
+             }
+         }
+    
    static func loadPopularMovies(api_key: String, language: String, page: Int, region: String, completion:@escaping (Result<Results,AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         AF.request(APIRouter.loadPopularMovies(api_key: api_key, language: language, page: page, region: region))

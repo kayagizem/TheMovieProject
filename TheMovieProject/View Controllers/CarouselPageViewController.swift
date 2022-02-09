@@ -5,6 +5,10 @@ class CarouselPageViewController: UIPageViewController {
     
     fileprivate var items: [UIViewController] = []
     
+    @IBAction func navigateToDashBoard(_ sender: Any) {
+        self.performSegue(withIdentifier: "toDashboard", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
