@@ -18,7 +18,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
 
     @IBAction func UpcomingSeeAll(_ sender: Any) {
         
-       let storyboard = UIStoryboard(name: "PopularMoviesAllView", bundle: nil)
+       let storyboard = UIStoryboard(name: "SeeMoviesViewController", bundle: nil)
        let vc = storyboard.instantiateViewController(withIdentifier: "SeeMoviesViewController") as! SeeMoviesViewController
        present(vc, animated: true, completion: nil)
       // self.performSegue(withIdentifier: "toSeeAll", sender: self)
