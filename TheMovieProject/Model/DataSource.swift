@@ -13,10 +13,15 @@ class DataSource {
     var upcomingMoviesList: [Movie] = []
     var popularMoviesList: [Movie] = []
     var nowPlayingMoviesList: [Movie] = []
+    var allMovies: [Movie] = []
     var delegate: DataSourceDelegate?
     
-    func loadPopularMovies(){
-        APIClient.loadPopularMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page: 1, region:"US") { result in
+    func appendMovies(movie: Movie){
+        allMovies.append(movie)
+    }
+    
+    func loadPopularMovies(page: Int){
+        APIClient.loadPopularMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page: page, region:"US") { result in
             switch result{
             case .success(let movie):
                 self.popularMoviesList.append(contentsOf: movie.results!)
@@ -30,8 +35,8 @@ class DataSource {
         }
     }
     
-    func loadUpcomingMovies(){
-        APIClient.loadUpcomingMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page:1, region:"US") { result in
+    func loadUpcomingMovies(page: Int){
+        APIClient.loadUpcomingMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page: page, region:"US") { result in
             switch result{
             case .success(let movie):
                 self.upcomingMoviesList.append(contentsOf: movie.results!)
@@ -44,9 +49,9 @@ class DataSource {
         }
     }
     
-    func loadNow_PlayingMovies(){
+    func loadNow_PlayingMovies(page: Int){
         
-        TheMovieProject.APIClient.loadNow_PlayingMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page:1, region:"US") { result in
+        TheMovieProject.APIClient.loadNow_PlayingMovies(api_key: "dc190303aea87bdf6e4faa3d59de8c59", language:"en-US", page: page, region:"US") { result in
             switch result{
             case .success(let movie):
                 self.nowPlayingMoviesList.append(contentsOf: movie.results!)

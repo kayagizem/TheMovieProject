@@ -12,3 +12,4 @@ class SeeAllMoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var MovieLabel: UILabel!
     @IBOutlet weak var MoviePoster: UIImageView!
 }
+

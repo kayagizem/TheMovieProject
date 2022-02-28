@@ -41,6 +41,7 @@ class APIClient {
                     completion(response.result)
             }
         }
+    
     static func loadMovieDetail(movie_id: Int, api_key: String, language: String, append_to_response: String, completion:@escaping (Result<Results,AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         AF.request(APIRouter.loadMovieDetail(movie_id: movie_id,api_key: api_key, language: language, append_to_response: append_to_response))

@@ -13,17 +13,18 @@ import SDWebImage
 
 class DiscoverViewController: UIViewController, UICollectionViewDelegate {
     var contentOffset: CGFloat = 0
+    var dataSource = DataSource()
+
+    @IBAction func UpcomingTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "UpcomingAll", sender: self)
+    }
     
-  
-
-    @IBAction func UpcomingSeeAll(_ sender: Any) {
-        
-       let storyboard = UIStoryboard(name: "PopularMoviesAllView", bundle: nil)
-       let vc = storyboard.instantiateViewController(withIdentifier: "SeeMoviesViewController") as! SeeMoviesViewController
-       present(vc, animated: true, completion: nil)
-      // self.performSegue(withIdentifier: "toSeeAll", sender: self)
-
-
+    @IBAction func MostPopularTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "MostPopularAll", sender: self)
+    }
+    
+    @IBAction func NowPlayingTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "NowPlayingAll", sender: self)
     }
     
  
@@ -32,22 +33,43 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var PopularMovies: UICollectionView!
     
   
-    var dataSource = DataSource()
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource.delegate = self
-        dataSource.loadPopularMovies()
-        dataSource.loadUpcomingMovies()
-        dataSource.loadNow_PlayingMovies()
+        dataSource.loadPopularMovies(page:1)
+        dataSource.loadUpcomingMovies(page:1)
+        dataSource.loadNow_PlayingMovies(page:1)
         
         
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+
+        if segue.identifier == "UpcomingAll",
+            let seeMoviesViewController  = segue.destination as? SeeMoviesViewController {
+            seeMoviesViewController.type = "Upcoming"
+            }
+        if segue.identifier == "MostPopularAll",
+            let seeMoviesViewController  = segue.destination as? SeeMoviesViewController {
+            seeMoviesViewController.type = "MostPopular"
+            }
+        if segue.identifier == "NowPlayingAll",
+            let seeMoviesViewController  = segue.destination as? SeeMoviesViewController {
+            seeMoviesViewController.type = "NowPlaying"
+            }
+
+    }
+
+    
 }
 
 
 extension DiscoverViewController: DataSourceDelegate{
+   
+    
     func NowPlayingLoaded() {
         NowPlayingMovies.reloadData()
     }

@@ -84,7 +84,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="buT-w2-kWR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-168.11594202898553" y="-57.589285714285708"/>
+            <point key="canvasLocation" x="277" y="-58"/>
         </scene>
         <!--DiscoverViewController-->
         <scene sceneID="9c3-3A-xPC">
@@ -94,7 +94,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsb-LO-pD1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-167" y="362"/>
+            <point key="canvasLocation" x="278" y="327"/>
         </scene>
         <!--Carousel Page View Controller-->
         <scene sceneID="hD1-L3-rc0">
@@ -102,7 +102,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="JCM-Vn-yxc" customClass="CarouselPageViewController" customModule="TheMovieProject" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pUO-Fz-y7m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1299" y="-57"/>
+            <point key="canvasLocation" x="1103" y="-58"/>
         </scene>
     </scenes>
     <resources>

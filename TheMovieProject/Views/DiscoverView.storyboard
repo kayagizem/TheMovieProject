@@ -29,20 +29,21 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhn-eV-d7j">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="31"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Most Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1i0-1J-qjn">
-                                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="31"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1i0-1J-qjn">
+                                                                <rect key="frame" x="0.0" y="0.0" width="68.5" height="31"/>
                                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
                                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOq-bE-SDl">
-                                                                <rect key="frame" x="89.5" y="0.0" width="324.5" height="31"/>
+                                                                <rect key="frame" x="68.5" y="0.0" width="345.5" height="31"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="See All">
                                                                     <color key="baseForegroundColor" red="0.0078431372550000003" green="0.58039215690000001" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="UpcomingSeeAll:" destination="JK6-cq-K3M" eventType="touchUpInside" id="HqS-62-AgB"/>
+                                                                    <action selector="UpcomingTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="6bO-Bw-BEY"/>
+                                                                    <segue destination="AuW-fv-DaH" kind="show" identifier="UpcomingAll" id="rqs-mH-qo0"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -132,18 +133,22 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ti6-E1-WPw">
                                                         <rect key="frame" x="0.0" y="294" width="414" height="31"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbS-30-0xa">
-                                                                <rect key="frame" x="0.0" y="0.0" width="68.5" height="31"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Most Popular" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbS-30-0xa">
+                                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="31"/>
                                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
                                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQG-3b-BAa">
-                                                                <rect key="frame" x="68.5" y="0.0" width="345.5" height="31"/>
+                                                                <rect key="frame" x="89.5" y="0.0" width="324.5" height="31"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="See All">
                                                                     <color key="baseForegroundColor" red="0.0078431372550000003" green="0.58039215690000001" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="MostPopularTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="o8h-oT-r0o"/>
+                                                                    <segue destination="AuW-fv-DaH" kind="show" identifier="MostPopularAll" id="hU4-6b-Veg"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -243,6 +248,10 @@
                                                                 <buttonConfiguration key="configuration" style="plain" title="See All">
                                                                     <color key="baseForegroundColor" red="0.0078431372550000003" green="0.58039215690000001" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="NowPlayingTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="p4v-Ik-lFd"/>
+                                                                    <segue destination="AuW-fv-DaH" kind="show" identifier="NowPlayingAll" id="m1P-4M-hVc"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -385,7 +394,20 @@
             </objects>
             <point key="canvasLocation" x="480" y="382"/>
         </scene>
+        <!--SeeMoviesViewController-->
+        <scene sceneID="ayV-dw-h3l">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MoviesAllView" referencedIdentifier="SeeMoviesViewController" id="AuW-fv-DaH" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="6AS-IK-pjQ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dOZ-Qz-Ft8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1041" y="382"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="rqs-mH-qo0"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
