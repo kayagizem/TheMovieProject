@@ -150,7 +150,6 @@ enum APIRouter: URLRequestConvertible {
                           }
            }
            print(urlRequest)
-           print("URLLLLLLL")
            return urlRequest
        }
 

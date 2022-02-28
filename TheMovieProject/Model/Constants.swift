@@ -12,6 +12,9 @@ struct K {
     struct ProductionServer {
         static let baseURL = "https://api.themoviedb.org/3"
         static let imageURL = "https://image.tmdb.org/t/p/original/"
+        
+        static let api_key = "dc190303aea87bdf6e4faa3d59de8c59"
+        static let default_lang = "en-US"
     }
     
     struct APIParameterKey {
