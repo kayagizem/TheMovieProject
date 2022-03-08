@@ -26,12 +26,10 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
     @IBAction func NowPlayingTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "NowPlayingAll", sender: self)
     }
-    
  
     @IBOutlet weak var NowPlayingMovies: UICollectionView!
     @IBOutlet weak var UpcomingMovies: UICollectionView!
     @IBOutlet weak var PopularMovies: UICollectionView!
-    
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +37,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         dataSource.loadPopularMovies(page:1)
         dataSource.loadUpcomingMovies(page:1)
         dataSource.loadNow_PlayingMovies(page:1)
-        
-        
     }
-    
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
@@ -60,12 +55,9 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
             let seeMoviesViewController  = segue.destination as? SeeMoviesViewController {
             seeMoviesViewController.type = "NowPlaying"
             }
-
     }
 
-    
 }
-
 
 extension DiscoverViewController: DataSourceDelegate{
    
@@ -83,7 +75,6 @@ extension DiscoverViewController: DataSourceDelegate{
         
     }
 }
-
 
 extension DiscoverViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
