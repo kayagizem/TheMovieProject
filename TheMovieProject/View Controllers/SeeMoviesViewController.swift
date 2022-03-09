@@ -27,8 +27,6 @@ class SeeMoviesViewController: UIViewController {
         page = 1
         dataSource.delegate = self
         MoviesCollection.dataSource = self
-        
-        
         if  type == "MostPopular" {
             dataSource.loadPopularMovies(page: page)
         } else if  type == "Upcoming" {
