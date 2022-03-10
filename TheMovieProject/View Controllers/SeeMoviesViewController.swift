@@ -12,7 +12,7 @@ import AlamofireImage
 import SDWebImage
 
 
-class SeeMoviesViewController: UIViewController {
+class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate {
     var isLoadingMore : Bool = false
     var page: Int = 1
     var delegate: DataSourceDelegate?
@@ -27,7 +27,7 @@ class SeeMoviesViewController: UIViewController {
         page = 1
         dataSource.delegate = self
         MoviesCollection.dataSource = self
-        
+        MoviesCollection.delegate = self
         
         if  type == "MostPopular" {
             dataSource.loadPopularMovies(page: page)
@@ -37,8 +37,36 @@ class SeeMoviesViewController: UIViewController {
             dataSource.loadNow_PlayingMovies(page: page)
         }
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! SeeAllMoviesCollectionViewCell
+
+        if  type == "MostPopular" {
+            if let indexPath = MoviesCollection.indexPath(for: cell){
+                let movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
+                let movieDetailsViewController = segue.destination as! MovieDetailsViewController
+                movieDetailsViewController.selectedMovie = movie        }
+            
+            else if  type == "Upcoming" {
+                if let indexPath = MoviesCollection.indexPath(for: cell){
+                    let movie = dataSource.getUpcomingMovieForIndex(index: indexPath.row)
+                    let movieDetailsViewController = segue.destination as! MovieDetailsViewController
+                    movieDetailsViewController.selectedMovie = movie        }
+                else {
+                    if let indexPath = MoviesCollection.indexPath(for: cell){
+                        let movie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
+                        let movieDetailsViewController = segue.destination as! MovieDetailsViewController
+                        movieDetailsViewController.selectedMovie = movie
+                    }
+                    
+                    
+                }
+            }
+        }
+    }
 }
+
+
+
 
 extension SeeMoviesViewController: UICollectionViewDataSource {
     
@@ -69,6 +97,8 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
         }else {
             movie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
         }
+        let margins = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
+        cell.frame = cell.frame.inset(by: margins)
         
         cell.MovieLabel.text = movie?.original_title
         var urlImage = ""
@@ -82,11 +112,12 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y + 1) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+        if (self.MoviesCollection.contentOffset.y >= (self.MoviesCollection.contentSize.height - self.MoviesCollection.bounds.size.height)) {
+            print("scroll edildi")
             if !isLoadingMore {
                 isLoadingMore = true
                 page = page + 1
-                
+                print(page)
                 if  type == "MostPopular"{
                     dataSource.loadPopularMovies(page: page)
                 } else if type == "Upcoming"{
@@ -97,11 +128,11 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
                 
                 self.MoviesCollection.reloadData()
                 self.isLoadingMore = false
-                    
-                }
                 
             }
+            
         }
+    }
     
 }
 

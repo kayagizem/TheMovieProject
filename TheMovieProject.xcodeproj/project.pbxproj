@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0501837F27D88541005BEB36 /* MovieDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0501837E27D88541005BEB36 /* MovieDetailView.storyboard */; };
+		0501838527D89706005BEB36 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0501838427D89706005BEB36 /* MovieDetailsViewController.swift */; };
 		051D992D2760E08C00DC615D /* MostPopulerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D992C2760E08C00DC615D /* MostPopulerCollectionViewCell.swift */; };
 		051D992F2760E0DA00DC615D /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D992E2760E0DA00DC615D /* DiscoverViewController.swift */; };
 		051D99322760F3A100DC615D /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D99312760F3A100DC615D /* APIRouter.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0501837E27D88541005BEB36 /* MovieDetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MovieDetailView.storyboard; sourceTree = "<group>"; };
+		0501838427D89706005BEB36 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		051D992C2760E08C00DC615D /* MostPopulerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopulerCollectionViewCell.swift; sourceTree = "<group>"; };
 		051D992E2760E0DA00DC615D /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		051D99312760F3A100DC615D /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				0553B8372746BC2D00F84EE3 /* CarouselPageViewController.swift */,
 				051D992E2760E0DA00DC615D /* DiscoverViewController.swift */,
 				059244E027B02C9F0064B5BE /* SeeMoviesViewController.swift */,
+				0501838427D89706005BEB36 /* MovieDetailsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				0553B81E2746ADAB00F84EE3 /* Main.storyboard */,
 				058618A1279F142600F078FD /* DiscoverView.storyboard */,
 				059244DE27AAAB640064B5BE /* MoviesAllView.storyboard */,
+				0501837E27D88541005BEB36 /* MovieDetailView.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 				0553B8222746ADAF00F84EE3 /* Assets.xcassets in Resources */,
 				0553B82D2746B07D00F84EE3 /* carouselItem.xib in Resources */,
 				058618A2279F142600F078FD /* DiscoverView.storyboard in Resources */,
+				0501837F27D88541005BEB36 /* MovieDetailView.storyboard in Resources */,
 				059244DF27AAAB640064B5BE /* MoviesAllView.storyboard in Resources */,
 				0553B8202746ADAB00F84EE3 /* Main.storyboard in Resources */,
 			);
@@ -348,6 +355,7 @@
 				0586189B279D99F100F078FD /* NowPlayingCollectionViewCell.swift in Sources */,
 				0553B8382746BC2D00F84EE3 /* CarouselPageViewController.swift in Sources */,
 				059244E327B02CF30064B5BE /* SeeAllMoviesCollectionViewCell.swift in Sources */,
+				0501838527D89706005BEB36 /* MovieDetailsViewController.swift in Sources */,
 				05DA76A627666C9E004547C9 /* UserEndpoint.swift in Sources */,
 				05DA76A427666C62004547C9 /* APIProtocol.swift in Sources */,
 				059244E527B3D00C0064B5BE /* ViewController.swift in Sources */,
