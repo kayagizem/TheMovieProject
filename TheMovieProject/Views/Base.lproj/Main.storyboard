@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FdA-Sn-Fyz">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -24,7 +24,7 @@
                                 </connections>
                             </containerView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="mrD-Y6-Pts">
-                                <rect key="frame" x="20" y="403.66666666666669" width="374" height="98.666666666666686"/>
+                                <rect key="frame" x="20" y="425.66666666666669" width="374" height="98.666666666666686"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies &amp; Series" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="863-qF-SHI">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -56,13 +56,28 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="navigateToDashBoard:" destination="buT-w2-kWR" eventType="touchUpInside" id="MFa-7S-REr"/>
-                                    <segue destination="c0b-Uw-NeO" kind="show" identifier="toDashboard" id="DDp-eO-NUW"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gWE-4a-vHq">
                                 <rect key="frame" x="282" y="765.33333333333337" width="19.666666666666686" height="14.666666666666629"/>
                                 <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEV-Zu-ltr">
+                                <rect key="frame" x="112" y="753" width="189.33333333333337" height="39.333333333333371"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.0078431372550000003" green="0.58039215690000001" blue="0.64705882349999999" alpha="0.7525549882" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Explore Collection ">
+                                    <backgroundConfiguration key="background"/>
+                                    <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="21"/>
+                                    <color key="baseForegroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                    <color key="baseBackgroundColor" red="0.0078431372550000003" green="0.58039215690000001" blue="0.64705882349999999" alpha="0.7525549882" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="navigateToDashBoard:" destination="buT-w2-kWR" eventType="touchUpInside" id="rvR-kl-h5Q"/>
+                                    <segue destination="O9j-e1-RgT" kind="presentation" identifier="toDashboard" id="BnT-3G-xfx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -77,6 +92,7 @@
                             <constraint firstItem="2Nd-5p-dEF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wk6-dt-DRm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Qkw-CP-JUI"/>
                     <connections>
                         <outlet property="vwContainer" destination="UYP-pY-7Xj" id="WpS-5d-Lpl"/>
                     </connections>
@@ -84,17 +100,15 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="buT-w2-kWR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="277" y="-58"/>
+            <point key="canvasLocation" x="1186.9565217391305" y="-58.258928571428569"/>
         </scene>
-        <!--DiscoverViewController-->
-        <scene sceneID="9c3-3A-xPC">
+        <!--DiscoverNavigationController-->
+        <scene sceneID="wdL-g5-pNT">
             <objects>
-                <viewControllerPlaceholder storyboardName="DiscoverView" referencedIdentifier="DiscoverViewController" id="c0b-Uw-NeO" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="K78-yZ-bNf"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gsb-LO-pD1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="DiscoverNavigationController" storyboardName="DiscoverView" referencedIdentifier="DiscoverNavigationController" id="O9j-e1-RgT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oka-wz-Yu6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="278" y="327"/>
+            <point key="canvasLocation" x="1295" y="368"/>
         </scene>
         <!--Carousel Page View Controller-->
         <scene sceneID="hD1-L3-rc0">
@@ -102,11 +116,29 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="JCM-Vn-yxc" customClass="CarouselPageViewController" customModule="TheMovieProject" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pUO-Fz-y7m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="-58"/>
+            <point key="canvasLocation" x="2013.0434782608697" y="-58.258928571428569"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Whu-sH-oJF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FdA-Sn-Fyz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TsF-gL-wb1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="nEf-vL-6wy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6SS-Ia-vMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="276.81159420289856" y="-58.258928571428569"/>
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.right" catalog="system" width="128" height="98"/>
+        <image name="arrow.right" catalog="system" width="32" height="32"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

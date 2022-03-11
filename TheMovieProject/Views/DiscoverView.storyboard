@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5B9-fn-vRj">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1022"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="978"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqY-eK-5MF">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rpl-p1-YiW">
-                                                <rect key="frame" x="0.0" y="100" width="414" height="870.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="870.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhn-eV-d7j">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="31"/>
@@ -43,7 +43,6 @@
                                                                 </buttonConfiguration>
                                                                 <connections>
                                                                     <action selector="UpcomingTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="6bO-Bw-BEY"/>
-                                                                    <segue destination="AuW-fv-DaH" kind="show" identifier="UpcomingAll" id="rqs-mH-qo0"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -147,7 +146,6 @@
                                                                 </buttonConfiguration>
                                                                 <connections>
                                                                     <action selector="MostPopularTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="o8h-oT-r0o"/>
-                                                                    <segue destination="AuW-fv-DaH" kind="show" identifier="MostPopularAll" id="hU4-6b-Veg"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -250,7 +248,6 @@
                                                                 </buttonConfiguration>
                                                                 <connections>
                                                                     <action selector="NowPlayingTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="p4v-Ik-lFd"/>
-                                                                    <segue destination="AuW-fv-DaH" kind="show" identifier="NowPlayingAll" id="m1P-4M-hVc"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -357,7 +354,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1000" id="1ao-lE-e6h"/>
                                             <constraint firstItem="Rpl-p1-YiW" firstAttribute="leading" secondItem="nqY-eK-5MF" secondAttribute="leading" id="6M0-hT-beV"/>
-                                            <constraint firstItem="Rpl-p1-YiW" firstAttribute="top" secondItem="nqY-eK-5MF" secondAttribute="top" constant="100" id="Bki-pB-WZr"/>
+                                            <constraint firstItem="Rpl-p1-YiW" firstAttribute="top" secondItem="nqY-eK-5MF" secondAttribute="top" id="Bki-pB-WZr"/>
                                             <constraint firstAttribute="trailing" secondItem="Rpl-p1-YiW" secondAttribute="trailing" id="U56-ef-Obx"/>
                                             <constraint firstItem="Rpl-p1-YiW" firstAttribute="width" secondItem="nqY-eK-5MF" secondAttribute="width" id="bzF-yf-LBa"/>
                                         </constraints>
@@ -373,6 +370,13 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="IJy-6y-KXs"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="QSC-zN-vcN"/>
                             </scrollView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e8t-Ym-vau">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="FyH-id-BHc"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xa7-ud-l83"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -383,6 +387,9 @@
                             <constraint firstItem="5B9-fn-vRj" firstAttribute="bottom" secondItem="Xa7-ud-l83" secondAttribute="bottom" id="SKr-tH-Ggd"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="POP-ey-K2c">
+                        <barButtonItem key="backBarButtonItem" title="Go Back" id="YLB-MZ-YOp"/>
+                    </navigationItem>
                     <size key="freeformSize" width="414" height="1100"/>
                     <connections>
                         <outlet property="NowPlayingMovies" destination="UGu-9v-eU4" id="BtO-EW-PVm"/>
@@ -392,7 +399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGA-lU-odV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="480" y="382"/>
+            <point key="canvasLocation" x="2300" y="381.69642857142856"/>
         </scene>
         <!--SeeMoviesViewController-->
         <scene sceneID="ayV-dw-h3l">
@@ -402,12 +409,27 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOZ-Qz-Ft8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1041" y="382"/>
+            <point key="canvasLocation" x="2860.144927536232" y="381.69642857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fYe-V2-yJL">
+            <objects>
+                <navigationController storyboardIdentifier="DiscoverNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8oi-Je-Srd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wBw-EY-5ng">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JK6-cq-K3M" kind="relationship" relationship="rootViewController" id="Z5R-eZ-sog"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cvn-uA-EPw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1389.8550724637682" y="381.69642857142856"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="rqs-mH-qo0"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

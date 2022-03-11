@@ -118,6 +118,13 @@
                                     <constraint firstItem="87S-Pq-WC7" firstAttribute="leading" secondItem="C89-3G-5jG" secondAttribute="leading" constant="161.5" id="cWn-Ci-WcT"/>
                                 </constraints>
                             </view>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cYu-ra-Ykg">
+                                <rect key="frame" x="0.0" y="18" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="Oc6-dP-JCY"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>

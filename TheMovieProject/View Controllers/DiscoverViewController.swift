@@ -16,7 +16,10 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
     var dataSource = DataSource()
 
     @IBAction func UpcomingTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "UpcomingAll", sender: self)
+        let storyboard: UIStoryboard? = UIStoryboard(name: "MoviesAllView", bundle: nil)
+        let moviesListViewController: SeeMoviesViewController = storyboard?.instantiateViewController(withIdentifier: "SeeMoviesViewController") as! SeeMoviesViewController
+        moviesListViewController.type = "Upcoming"
+        navigationController?.pushViewController(moviesListViewController, animated: true)
     }
     
     @IBAction func MostPopularTapped(_ sender: Any) {
@@ -39,10 +42,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         dataSource.loadPopularMovies(page:1)
         dataSource.loadUpcomingMovies(page:1)
         dataSource.loadNow_PlayingMovies(page:1)
-        
-        
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
