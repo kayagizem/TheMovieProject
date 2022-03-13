@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SDWebImage
-
+import Cosmos
 class MovieDetailsViewController: UIViewController {
 
     @IBOutlet weak var releaseDate: UILabel!
@@ -21,6 +21,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var thumbnail: UIImageView!
     
+    @IBOutlet weak var ratingView: CosmosView!
     var selectedMovie: Movie?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,8 +38,7 @@ class MovieDetailsViewController: UIViewController {
             }
             self.moviePoster.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
             self.thumbnail.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
-
-        }
+            self.ratingView.rating = RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 60.0)        }
     }
     
     override func viewDidLoad() {

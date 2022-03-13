@@ -23,12 +23,19 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
     }
     
     @IBAction func MostPopularTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "MostPopularAll", sender: self)
+        let storyboard: UIStoryboard? = UIStoryboard(name: "MoviesAllView", bundle: nil)
+        let moviesListViewController: SeeMoviesViewController = storyboard?.instantiateViewController(withIdentifier: "SeeMoviesViewController") as! SeeMoviesViewController
+        moviesListViewController.type = "Most Popular"
+        navigationController?.pushViewController(moviesListViewController, animated: true)
+        
     }
     
     @IBAction func NowPlayingTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "NowPlayingAll", sender: self)
-    }
+        let storyboard: UIStoryboard? = UIStoryboard(name: "MoviesAllView", bundle: nil)
+        let moviesListViewController: SeeMoviesViewController = storyboard?.instantiateViewController(withIdentifier: "SeeMoviesViewController") as! SeeMoviesViewController
+        moviesListViewController.type = "NowPlaying"
+        navigationController?.pushViewController(moviesListViewController, animated: true)
+            }
     
  
     @IBOutlet weak var NowPlayingMovies: UICollectionView!
@@ -42,6 +49,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         dataSource.loadPopularMovies(page:1)
         dataSource.loadUpcomingMovies(page:1)
         dataSource.loadNow_PlayingMovies(page:1)
+        self.title = "Discover Movies"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,7 +62,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
             }
         if segue.identifier == "MostPopularAll",
             let seeMoviesViewController  = segue.destination as? SeeMoviesViewController {
-            seeMoviesViewController.type = "MostPopular"
+            seeMoviesViewController.type = "Most Popular"
             }
         if segue.identifier == "NowPlayingAll",
             let seeMoviesViewController  = segue.destination as? SeeMoviesViewController {

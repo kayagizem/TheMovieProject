@@ -33,7 +33,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Gp6-l4-fM8">
-                                        <rect key="frame" x="171" y="22" width="198" height="106"/>
+                                        <rect key="frame" x="171" y="22" width="198" height="138"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fea-uP-oEL">
                                                 <rect key="frame" x="0.0" y="0.0" width="198" height="22"/>
@@ -47,20 +47,41 @@
                                                 </attributedString>
                                                 <color key="highlightedColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                             </label>
+                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxf-KL-BT6" customClass="CosmosView" customModule="Cosmos">
+                                                <rect key="frame" x="0.0" y="34" width="198" height="20"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="2Jp-oE-Pj9"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                                        <color key="value" systemColor="systemOrangeColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                                        <color key="value" red="0.68235294120000001" green="0.68044018750000002" blue="0.68044018750000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                                        <color key="value" systemColor="systemOrangeColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BJ-iI-okC">
-                                                <rect key="frame" x="0.0" y="34" width="198" height="16"/>
+                                                <rect key="frame" x="0.0" y="66" width="198" height="16"/>
                                                 <fontDescription key="fontDescription" name="AppleGothic" family="AppleGothic" pointSize="13"/>
                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYU-e0-ZmS">
-                                                <rect key="frame" x="0.0" y="62" width="198" height="16"/>
+                                                <rect key="frame" x="0.0" y="94" width="198" height="16"/>
                                                 <fontDescription key="fontDescription" name="AppleGothic" family="AppleGothic" pointSize="13"/>
                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3k-10-koU">
-                                                <rect key="frame" x="0.0" y="90" width="198" height="16"/>
+                                                <rect key="frame" x="0.0" y="122" width="198" height="16"/>
                                                 <fontDescription key="fontDescription" name="AppleGothic" family="AppleGothic" pointSize="13"/>
                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -68,9 +89,9 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmv-HF-qaa">
-                                        <rect key="frame" x="8" y="185" width="361" height="29"/>
+                                        <rect key="frame" x="8" y="185" width="361" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="F18-On-jCm"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="F18-On-jCm"/>
                                         </constraints>
                                         <attributedString key="attributedText">
                                             <fragment content="Label">
@@ -88,10 +109,10 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="tmv-HF-qaa" secondAttribute="trailing" constant="5" id="AOt-zU-Ow6"/>
                                     <constraint firstItem="tmv-HF-qaa" firstAttribute="leading" secondItem="vp7-9P-XJ1" secondAttribute="leading" constant="8" id="BKW-T4-mBC"/>
-                                    <constraint firstItem="tmv-HF-qaa" firstAttribute="top" secondItem="Qwz-m6-Sxr" secondAttribute="bottom" constant="15" id="Bgo-j1-GIk"/>
                                     <constraint firstItem="Qwz-m6-Sxr" firstAttribute="top" secondItem="vp7-9P-XJ1" secondAttribute="top" constant="8" id="JbF-0H-Yyq"/>
                                     <constraint firstItem="Qwz-m6-Sxr" firstAttribute="leading" secondItem="vp7-9P-XJ1" secondAttribute="leading" constant="8" id="M7a-ys-Egd"/>
                                     <constraint firstAttribute="trailing" secondItem="Gp6-l4-fM8" secondAttribute="trailing" constant="5" id="RXV-Ia-DSS"/>
+                                    <constraint firstItem="tmv-HF-qaa" firstAttribute="top" secondItem="A3k-10-koU" secondAttribute="bottom" constant="25" id="SBr-Ox-ngt"/>
                                     <constraint firstItem="Gp6-l4-fM8" firstAttribute="top" secondItem="vp7-9P-XJ1" secondAttribute="top" constant="22" id="d5i-lH-j3V"/>
                                     <constraint firstItem="Gp6-l4-fM8" firstAttribute="leading" secondItem="Qwz-m6-Sxr" secondAttribute="trailing" constant="24" id="iEM-wd-xJb"/>
                                 </constraints>
@@ -132,6 +153,7 @@
                         <outlet property="movieLanguage" destination="cYU-e0-ZmS" id="3yw-2c-0LX"/>
                         <outlet property="moviePoster" destination="Qwz-m6-Sxr" id="RdA-Ta-2Sw"/>
                         <outlet property="movieTitle" destination="Fea-uP-oEL" id="DHF-mK-Tq4"/>
+                        <outlet property="ratingView" destination="wxf-KL-BT6" id="aHA-t8-WbI"/>
                         <outlet property="releaseDate" destination="A3k-10-koU" id="k5j-dH-7hW"/>
                         <outlet property="thumbnail" destination="prn-YQ-AZ5" id="ndj-TH-4Om"/>
                     </connections>
@@ -141,10 +163,14 @@
             <point key="canvasLocation" x="89.855072463768124" y="103.79464285714285"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.14901960780000001" green="0.68044018750000002" blue="0.68044018750000002" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="play.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

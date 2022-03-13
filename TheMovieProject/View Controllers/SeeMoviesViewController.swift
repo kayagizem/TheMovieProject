@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SDWebImage
-
+import Cosmos
 
 class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate {
     var isLoadingMore : Bool = false
@@ -20,6 +20,11 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
     var type: String = ""
     var movies: [Movie] = []
     
+    let ratingCosmos = CosmosView()
+    
+    
+    
+    
     @IBOutlet weak var MoviesCollection: UICollectionView!
     
     override func viewDidLoad() {
@@ -28,9 +33,9 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
         dataSource.delegate = self
         MoviesCollection.dataSource = self
         MoviesCollection.delegate = self
-        self.title = "\(type)"
-    
-        if  type == "MostPopular" {
+        self.title = "\(type) Movies"
+        
+        if  type == "Most Popular" {
             dataSource.loadPopularMovies(page: page)
         } else if  type == "Upcoming" {
             dataSource.loadUpcomingMovies(page: page)
@@ -40,31 +45,29 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! SeeAllMoviesCollectionViewCell
-
-        if  type == "MostPopular" {
-            if let indexPath = MoviesCollection.indexPath(for: cell){
+        if let indexPath = MoviesCollection.indexPath(for: cell){
+            
+            if  type == "Most Popular" {
                 let movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
                 let movieDetailsViewController = segue.destination as! MovieDetailsViewController
                 movieDetailsViewController.selectedMovie = movie        }
             
             else if  type == "Upcoming" {
-                if let indexPath = MoviesCollection.indexPath(for: cell){
-                    let movie = dataSource.getUpcomingMovieForIndex(index: indexPath.row)
-                    let movieDetailsViewController = segue.destination as! MovieDetailsViewController
-                    movieDetailsViewController.selectedMovie = movie        }
-                else {
-                    if let indexPath = MoviesCollection.indexPath(for: cell){
-                        let movie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
-                        let movieDetailsViewController = segue.destination as! MovieDetailsViewController
-                        movieDetailsViewController.selectedMovie = movie
-                    }
-                    
-                    
-                }
+                let movie = dataSource.getUpcomingMovieForIndex(index: indexPath.row)
+                let movieDetailsViewController = segue.destination as! MovieDetailsViewController
+                movieDetailsViewController.selectedMovie = movie        }
+            else {
+                let movie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
+                let movieDetailsViewController = segue.destination as! MovieDetailsViewController
+                movieDetailsViewController.selectedMovie = movie
+                
             }
         }
     }
 }
+
+
+
 
 
 
@@ -76,7 +79,7 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if type == "MostPopular"{
+        if type == "Most Popular"{
             return dataSource.getNumberOfPopularMovies()
         }else if type == "Upcoming"{
             return dataSource.getNumberOfUpcomingMovies()
@@ -91,7 +94,7 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SeeAll", for: indexPath) as! SeeAllMoviesCollectionViewCell
         var movie: Movie?
         
-        if  type == "MostPopular"{
+        if  type == "Most Popular"{
             movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
         } else if type == "Upcoming"{
             movie = dataSource.getUpcomingMovieForIndex(index: indexPath.row)
@@ -109,6 +112,7 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
             debugPrint(error)
         }
         cell.MoviePoster.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
+        cell.ratingView.rating = RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie?.vote_average ?? 60.0)
         return cell
     }
     
@@ -119,7 +123,7 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
                 isLoadingMore = true
                 page = page + 1
                 print(page)
-                if  type == "MostPopular"{
+                if  type == "Most Popular"{
                     dataSource.loadPopularMovies(page: page)
                 } else if type == "Upcoming"{
                     dataSource.loadUpcomingMovies(page: page)
@@ -139,7 +143,7 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
 
 extension SeeMoviesViewController: DataSourceDelegate {
     func MostPopularLoaded() {
-        if type == "MostPopular"{
+        if type == "Most Popular"{
             MoviesCollection.reloadData()
         }
     }
