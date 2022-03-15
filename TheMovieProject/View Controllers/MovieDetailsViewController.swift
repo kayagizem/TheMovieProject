@@ -12,7 +12,7 @@ import AlamofireImage
 import SDWebImage
 import Cosmos
 class MovieDetailsViewController: UIViewController {
-
+    
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var movieLanguage: UILabel!
     @IBOutlet weak var movieGenre: UILabel!
@@ -21,6 +21,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var thumbnail: UIImageView!
     
+    @IBOutlet weak var ratingNumber: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
     var selectedMovie: Movie?
     
@@ -28,7 +29,9 @@ class MovieDetailsViewController: UIViewController {
         if let movie = selectedMovie {
             self.movieTitle.text = movie.original_title
             self.releaseDate.text = movie.release_date
-            self.movieLanguage.text = movie.original_language
+            if let language = LanguageType(rawValue: movie.original_language ?? "en"){
+                self.movieLanguage.text = "Language: \(language.language)"
+            }
             self.movieDescription.text = movie.overview
             var urlImage = ""
             do {
@@ -38,38 +41,44 @@ class MovieDetailsViewController: UIViewController {
             }
             self.moviePoster.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
             self.thumbnail.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
-            self.ratingView.rating = RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 60.0)        }
+            self.ratingView.rating = RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 0.0)
+            self.ratingNumber.text = "\(RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 0.0)) / 10"
+            
+        }
+            
+        
     }
+
+
+override func viewDidLoad() {
+    super.viewDidLoad()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+    // Do any additional setup after loading the view.
+}
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+/*
+ // MARK: - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+ // Get the new view controller using segue.destination.
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 }
 
 extension UIView {
-func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
-    layer.masksToBounds = false
-    layer.shadowColor = color.cgColor
-    layer.shadowOpacity = opacity
-    layer.shadowOffset = offSet
-    layer.shadowRadius = radius
-
-    layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-    layer.shouldRasterize = true
-    layer.rasterizationScale = scale ? UIScreen.main.scale : 1
-  }
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offSet
+        layer.shadowRadius = radius
+        
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
 }

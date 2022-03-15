@@ -15,10 +15,12 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
     var contentOffset: CGFloat = 0
     var dataSource = DataSource()
 
+    
     @IBAction func UpcomingTapped(_ sender: Any) {
         let storyboard: UIStoryboard? = UIStoryboard(name: "MoviesAllView", bundle: nil)
         let moviesListViewController: SeeMoviesViewController = storyboard?.instantiateViewController(withIdentifier: "SeeMoviesViewController") as! SeeMoviesViewController
         moviesListViewController.type = "Upcoming"
+        moviesListViewController.dataSource = dataSource
         navigationController?.pushViewController(moviesListViewController, animated: true)
     }
     
@@ -26,6 +28,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         let storyboard: UIStoryboard? = UIStoryboard(name: "MoviesAllView", bundle: nil)
         let moviesListViewController: SeeMoviesViewController = storyboard?.instantiateViewController(withIdentifier: "SeeMoviesViewController") as! SeeMoviesViewController
         moviesListViewController.type = "Most Popular"
+        moviesListViewController.dataSource = dataSource
         navigationController?.pushViewController(moviesListViewController, animated: true)
         
     }
@@ -34,6 +37,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         let storyboard: UIStoryboard? = UIStoryboard(name: "MoviesAllView", bundle: nil)
         let moviesListViewController: SeeMoviesViewController = storyboard?.instantiateViewController(withIdentifier: "SeeMoviesViewController") as! SeeMoviesViewController
         moviesListViewController.type = "NowPlaying"
+        moviesListViewController.dataSource = dataSource
         navigationController?.pushViewController(moviesListViewController, animated: true)
             }
     
@@ -45,6 +49,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerNibCell()
         dataSource.delegate = self
         dataSource.loadPopularMovies(page:1)
         dataSource.loadUpcomingMovies(page:1)
@@ -70,6 +75,19 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
             }
 
     }
+    
+    func registerNibCell(){
+        
+        let  DiscoverCellNib: UINib =  UINib(nibName: "DiscoverCell", bundle: nil)
+        UpcomingMovies.register(DiscoverCellNib, forCellWithReuseIdentifier: "UpcomingCell")
+        let  NowPlayingCellNib: UINib =  UINib(nibName: "NowPlayingCell", bundle: nil)
+        NowPlayingMovies.register(NowPlayingCellNib, forCellWithReuseIdentifier: "NowPlayingCell")
+        let  PopularMoviesCellNib: UINib =  UINib(nibName: "PopularMoviesCell", bundle: nil)
+        PopularMovies.register(PopularMoviesCellNib, forCellWithReuseIdentifier: "PopularMoviesCell")
+
+    }
+    
+    
 
     
 }
@@ -94,6 +112,22 @@ extension DiscoverViewController: DataSourceDelegate{
 
 
 extension DiscoverViewController: UICollectionViewDataSource {
+   
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard: UIStoryboard? = UIStoryboard(name: "MovieDetailView", bundle: nil)
+        let movieDetailsViewController: MovieDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        navigationController?.pushViewController(movieDetailsViewController, animated: true)
+        if collectionView == NowPlayingMovies{
+            movieDetailsViewController.selectedMovie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
+
+        } else if collectionView == PopularMovies{
+            movieDetailsViewController.selectedMovie = dataSource.getPopularMovieForIndex(index: indexPath.row)
+
+        } else {
+            movieDetailsViewController.selectedMovie = dataSource.getUpcomingMovieForIndex(index: indexPath.row)
+        }
+    }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -111,6 +145,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         if collectionView == self.PopularMovies{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularMoviesCell", for: indexPath) as! MostPopulerCollectionViewCell
             let movie = dataSource.getPopularMovieForIndex(index: indexPath.row)

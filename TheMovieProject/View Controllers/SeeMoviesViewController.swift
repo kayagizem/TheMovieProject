@@ -16,31 +16,29 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
     var isLoadingMore : Bool = false
     var page: Int = 1
     var delegate: DataSourceDelegate?
-    let dataSource = DataSource()
+    var dataSource :DataSource?
     var type: String = ""
     var movies: [Movie] = []
-    
     let ratingCosmos = CosmosView()
-    
-    
-    
-    
     @IBOutlet weak var MoviesCollection: UICollectionView!
     
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        registerNibCell()
         page = 1
-        dataSource.delegate = self
+        dataSource?.delegate = self
         MoviesCollection.dataSource = self
         MoviesCollection.delegate = self
         self.title = "\(type) Movies"
         
         if  type == "Most Popular" {
-            dataSource.loadPopularMovies(page: page)
+            dataSource?.loadPopularMovies(page: page)
         } else if  type == "Upcoming" {
-            dataSource.loadUpcomingMovies(page: page)
+            dataSource?.loadUpcomingMovies(page: page)
         } else {
-            dataSource.loadNow_PlayingMovies(page: page)
+            dataSource?.loadNow_PlayingMovies(page: page)
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -48,21 +46,28 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
         if let indexPath = MoviesCollection.indexPath(for: cell){
             
             if  type == "Most Popular" {
-                let movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
+                let movie = dataSource?.getPopularMovieForIndex(index: indexPath.row)
                 let movieDetailsViewController = segue.destination as! MovieDetailsViewController
                 movieDetailsViewController.selectedMovie = movie        }
             
             else if  type == "Upcoming" {
-                let movie = dataSource.getUpcomingMovieForIndex(index: indexPath.row)
+                let movie = dataSource?.getUpcomingMovieForIndex(index: indexPath.row)
                 let movieDetailsViewController = segue.destination as! MovieDetailsViewController
                 movieDetailsViewController.selectedMovie = movie        }
             else {
-                let movie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
+                let movie = dataSource?.getNowPlayingMovieForIndex(index: indexPath.row)
                 let movieDetailsViewController = segue.destination as! MovieDetailsViewController
                 movieDetailsViewController.selectedMovie = movie
                 
             }
         }
+    }
+    
+    func registerNibCell(){
+        
+        let  moviesAllCellNib: UINib =  UINib(nibName: "MoviesAllCell", bundle: nil)
+        MoviesCollection.register(moviesAllCellNib, forCellWithReuseIdentifier: "SeeAll")
+        
     }
 }
 
@@ -74,17 +79,18 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
 
 extension SeeMoviesViewController: UICollectionViewDataSource {
     
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if type == "Most Popular"{
-            return dataSource.getNumberOfPopularMovies()
+            return dataSource?.getNumberOfPopularMovies() ??  0
         }else if type == "Upcoming"{
-            return dataSource.getNumberOfUpcomingMovies()
+            return dataSource?.getNumberOfUpcomingMovies() ?? 0
         }else {
-            return dataSource.getNumberOfNowPlayingMovies()
+            return dataSource?.getNumberOfNowPlayingMovies() ?? 0
             
         }
         
@@ -95,11 +101,11 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
         var movie: Movie?
         
         if  type == "Most Popular"{
-            movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
+            movie = dataSource?.getPopularMovieForIndex(index: indexPath.row)
         } else if type == "Upcoming"{
-            movie = dataSource.getUpcomingMovieForIndex(index: indexPath.row)
+            movie = dataSource?.getUpcomingMovieForIndex(index: indexPath.row)
         }else {
-            movie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
+            movie = dataSource?.getNowPlayingMovieForIndex(index: indexPath.row)
         }
         let margins = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
         cell.frame = cell.frame.inset(by: margins)
@@ -118,17 +124,16 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (self.MoviesCollection.contentOffset.y >= (self.MoviesCollection.contentSize.height - self.MoviesCollection.bounds.size.height)) {
-            print("scroll edildi")
             if !isLoadingMore {
                 isLoadingMore = true
                 page = page + 1
                 print(page)
                 if  type == "Most Popular"{
-                    dataSource.loadPopularMovies(page: page)
+                    dataSource?.loadPopularMovies(page: page)
                 } else if type == "Upcoming"{
-                    dataSource.loadUpcomingMovies(page: page)
+                    dataSource?.loadUpcomingMovies(page: page)
                 } else {
-                    dataSource.loadNow_PlayingMovies(page: page)
+                    dataSource?.loadNow_PlayingMovies(page: page)
                 }
                 
                 self.MoviesCollection.reloadData()
@@ -136,6 +141,20 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
                 
             }
             
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard: UIStoryboard? = UIStoryboard(name: "MovieDetailView", bundle: nil)
+        let movieDetailsViewController: MovieDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        navigationController?.pushViewController(movieDetailsViewController, animated: true)
+        if type == "NowPlaying"{
+            movieDetailsViewController.selectedMovie = dataSource?.getNowPlayingMovieForIndex(index: indexPath.row)
+
+        } else if type == "Most Popular"{
+            movieDetailsViewController.selectedMovie = dataSource?.getPopularMovieForIndex(index: indexPath.row)
+
+        } else {
+            movieDetailsViewController.selectedMovie = dataSource?.getUpcomingMovieForIndex(index: indexPath.row)
         }
     }
     
