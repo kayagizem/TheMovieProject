@@ -51,7 +51,7 @@
                                                 <rect key="frame" x="0.0" y="34" width="204" height="20"/>
                                                 <subviews>
                                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxf-KL-BT6" customClass="CosmosView" customModule="Cosmos">
-                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="153" height="20"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="2Jp-oE-Pj9"/>
@@ -78,7 +78,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eY8-OZ-3KU">
-                                                        <rect key="frame" x="179.5" y="0.0" width="24.5" height="20"/>
+                                                        <rect key="frame" x="165" y="0.0" width="39" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="kRp-Bt-lXQ"/>
                                                         </constraints>
@@ -94,7 +94,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BJ-iI-okC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BJ-iI-okC">
                                                 <rect key="frame" x="0.0" y="66" width="204" height="16"/>
                                                 <fontDescription key="fontDescription" name="AppleGothic" family="AppleGothic" pointSize="13"/>
                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -115,7 +115,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmv-HF-qaa">
-                                        <rect key="frame" x="8" y="185" width="361" height="40"/>
+                                        <rect key="frame" x="8" y="195" width="361" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="F18-On-jCm"/>
                                         </constraints>
@@ -138,7 +138,7 @@
                                     <constraint firstItem="Qwz-m6-Sxr" firstAttribute="top" secondItem="vp7-9P-XJ1" secondAttribute="top" constant="8" id="JbF-0H-Yyq"/>
                                     <constraint firstItem="Qwz-m6-Sxr" firstAttribute="leading" secondItem="vp7-9P-XJ1" secondAttribute="leading" constant="8" id="M7a-ys-Egd"/>
                                     <constraint firstAttribute="trailing" secondItem="Gp6-l4-fM8" secondAttribute="trailing" constant="5" id="RXV-Ia-DSS"/>
-                                    <constraint firstItem="tmv-HF-qaa" firstAttribute="top" secondItem="A3k-10-koU" secondAttribute="bottom" constant="25" id="SBr-Ox-ngt"/>
+                                    <constraint firstItem="tmv-HF-qaa" firstAttribute="top" secondItem="A3k-10-koU" secondAttribute="bottom" constant="35" id="SBr-Ox-ngt"/>
                                     <constraint firstItem="Gp6-l4-fM8" firstAttribute="top" secondItem="vp7-9P-XJ1" secondAttribute="top" constant="22" id="d5i-lH-j3V"/>
                                     <constraint firstItem="Gp6-l4-fM8" firstAttribute="leading" secondItem="Qwz-m6-Sxr" secondAttribute="trailing" constant="18" id="iEM-wd-xJb"/>
                                 </constraints>
@@ -190,6 +190,11 @@
             <point key="canvasLocation" x="89.855072463768124" y="103.79464285714285"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="wxf-KL-BT6">
+            <size key="intrinsicContentSize" width="110" height="18"/>
+        </designable>
+    </designables>
     <color key="tintColor" red="0.14901960780000001" green="0.68044018750000002" blue="0.68044018750000002" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="play.circle" catalog="system" width="128" height="121"/>

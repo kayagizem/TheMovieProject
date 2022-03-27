@@ -151,6 +151,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
             let movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
             cell.MovieLabel.text = movie.original_title
             cell.MovieDuration.text = "Duration"
+
             var urlImage = ""
             do {
                urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie.poster_path ?? "")").asURLRequest().url?.absoluteString ?? ""

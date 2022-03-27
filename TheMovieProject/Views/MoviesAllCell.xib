@@ -98,6 +98,11 @@
             <point key="canvasLocation" x="151.44927536231884" y="-26.116071428571427"/>
         </collectionViewCell>
     </objects>
+    <designables>
+        <designable name="66i-d5-nBD">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

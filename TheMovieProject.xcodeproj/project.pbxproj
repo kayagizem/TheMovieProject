@@ -38,6 +38,9 @@
 		059244E127B02C9F0064B5BE /* SeeMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059244E027B02C9F0064B5BE /* SeeMoviesViewController.swift */; };
 		059244E327B02CF30064B5BE /* SeeAllMoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059244E227B02CF30064B5BE /* SeeAllMoviesCollectionViewCell.swift */; };
 		059244E527B3D00C0064B5BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059244E427B3D00C0064B5BE /* ViewController.swift */; };
+		05AEE94B27EC99C20090E7CF /* GenreParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEE94A27EC99C20090E7CF /* GenreParser.swift */; };
+		05AEE94D27EC9B5E0090E7CF /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEE94C27EC9B5E0090E7CF /* Genre.swift */; };
+		05AEE95127EDDAD80090E7CF /* GenreDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEE95027EDDAD80090E7CF /* GenreDelegate.swift */; };
 		05CF4E5D277B7C2A00A56F26 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CF4E5C277B7C2A00A56F26 /* DateFormatter.swift */; };
 		05DA769F27666B96004547C9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA769E27666B96004547C9 /* Constants.swift */; };
 		05DA76A427666C62004547C9 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA76A327666C62004547C9 /* APIProtocol.swift */; };
@@ -79,6 +82,9 @@
 		059244E027B02C9F0064B5BE /* SeeMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoviesViewController.swift; sourceTree = "<group>"; };
 		059244E227B02CF30064B5BE /* SeeAllMoviesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllMoviesCollectionViewCell.swift; sourceTree = "<group>"; };
 		059244E427B3D00C0064B5BE /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05AEE94A27EC99C20090E7CF /* GenreParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreParser.swift; sourceTree = "<group>"; };
+		05AEE94C27EC9B5E0090E7CF /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		05AEE95027EDDAD80090E7CF /* GenreDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDelegate.swift; sourceTree = "<group>"; };
 		05CF4E5C277B7C2A00A56F26 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		05DA769E27666B96004547C9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		05DA76A327666C62004547C9 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
@@ -127,6 +133,9 @@
 				05861896279AEA0900F078FD /* DataSourceDelegate.swift */,
 				055743B927DE74C100F8CFE3 /* RatingUtilities.swift */,
 				055743BB27DE7E3100F8CFE3 /* MovieLanguage.swift */,
+				05AEE94A27EC99C20090E7CF /* GenreParser.swift */,
+				05AEE94C27EC9B5E0090E7CF /* Genre.swift */,
+				05AEE95027EDDAD80090E7CF /* GenreDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -370,6 +379,7 @@
 				05DA76A82767BB4D004547C9 /* Movie.swift in Sources */,
 				051D992F2760E0DA00DC615D /* DiscoverViewController.swift in Sources */,
 				05877DE4278F77E70058CB62 /* DataSource.swift in Sources */,
+				05AEE94D27EC9B5E0090E7CF /* Genre.swift in Sources */,
 				0553B8362746BA1700F84EE3 /* CarouselItem.swift in Sources */,
 				051D992D2760E08C00DC615D /* MostPopulerCollectionViewCell.swift in Sources */,
 				051D99322760F3A100DC615D /* APIRouter.swift in Sources */,
@@ -382,9 +392,11 @@
 				0501838527D89706005BEB36 /* MovieDetailsViewController.swift in Sources */,
 				05DA76A627666C9E004547C9 /* UserEndpoint.swift in Sources */,
 				05DA76A427666C62004547C9 /* APIProtocol.swift in Sources */,
+				05AEE95127EDDAD80090E7CF /* GenreDelegate.swift in Sources */,
 				059244E527B3D00C0064B5BE /* ViewController.swift in Sources */,
 				05DA769F27666B96004547C9 /* Constants.swift in Sources */,
 				05861897279AEA0900F078FD /* DataSourceDelegate.swift in Sources */,
+				05AEE94B27EC99C20090E7CF /* GenreParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,8 @@ enum APIRouter: URLRequestConvertible {
     case loadMovieReview(movie_id: Int, api_key: String, language: String, page: Int)
     case loadSimilarMovies(movie_id: Int, api_key: String, language: String, page: Int)
     case loadImage(movie_poster_url: String)
+    case genreList(api_key: String)
+
 
 
     
@@ -38,6 +40,8 @@ enum APIRouter: URLRequestConvertible {
                return .get
            case .loadImage(_):
                return .get
+           case .genreList(_):
+               return .get
            }
        }
        
@@ -58,6 +62,9 @@ enum APIRouter: URLRequestConvertible {
                return "/movie/\(movie_id)/similar"
            case .loadImage(let movie_poster_url):
                return "\(movie_poster_url)"
+           case .genreList(_):
+               return "/genre/movie/list"
+
            }
        }
        
@@ -91,6 +98,8 @@ enum APIRouter: URLRequestConvertible {
                            "page": page]
                case .loadImage(movie_poster_url: _):
                    return [:]
+               case .genreList(let api_key):
+                   return ["api_key": api_key]
                }
        }
        
@@ -118,6 +127,8 @@ enum APIRouter: URLRequestConvertible {
             case .loadImage(movie_poster_url: _):
                 return K.ProductionServer.imageURL
 
+            case .genreList:
+                return K.ProductionServer.baseURL
             }
     }
     

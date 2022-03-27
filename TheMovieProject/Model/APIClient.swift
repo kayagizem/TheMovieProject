@@ -63,6 +63,16 @@ class APIClient {
                     completion(response.result)
             }
         }
+    static func loadGenre(api_key: String,
+    completion:@escaping (Result<GenreResponse,AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        AF.request(APIRouter.genreList(api_key: api_key))
+            .responseDecodable (decoder: jsonDecoder) { (response: DataResponse<GenreResponse,AFError>) in
+                completion(response.result)
+                print("genreload")
+                print(response)
+            }
+    }
     }
  
 

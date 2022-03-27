@@ -24,8 +24,12 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var ratingNumber: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
     var selectedMovie: Movie?
+    var genreParser : GenreParser? = GenreParser()
+    var delegate: GenreDelegate?
+
     
     override func viewWillAppear(_ animated: Bool) {
+        genreParser?.delegate = self
         if let movie = selectedMovie {
             self.movieTitle.text = movie.original_title
             self.releaseDate.text = movie.release_date
@@ -43,7 +47,6 @@ class MovieDetailsViewController: UIViewController {
             self.thumbnail.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
             self.ratingView.rating = RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 0.0)
             self.ratingNumber.text = "\(RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 0.0)) / 10"
-            
         }
             
         
@@ -52,7 +55,6 @@ class MovieDetailsViewController: UIViewController {
 
 override func viewDidLoad() {
     super.viewDidLoad()
-    
     // Do any additional setup after loading the view.
 }
 
@@ -82,3 +84,13 @@ extension UIView {
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
 }
+
+
+extension MovieDetailsViewController: GenreDelegate{
+    func GenreLoaded() {
+        if let genreArray = selectedMovie?.genre_ids {
+        self.movieGenre.text = genreParser?.toString(genreArray)
+        }
+    }
+}
+ 
