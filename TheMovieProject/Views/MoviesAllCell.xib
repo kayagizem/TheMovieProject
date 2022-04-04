@@ -90,9 +90,9 @@
             </collectionViewCellContentView>
             <size key="customSize" width="357" height="168"/>
             <connections>
-                <outlet property="MovieGenre" destination="wsK-ou-3Es" id="AOY-b1-vP6"/>
-                <outlet property="MovieLabel" destination="XaE-sV-AGa" id="B5j-Ul-ZSv"/>
-                <outlet property="MoviePoster" destination="SRK-ke-nmX" id="8Dh-p9-V3a"/>
+                <outlet property="movieGenre" destination="wsK-ou-3Es" id="AOY-b1-vP6"/>
+                <outlet property="movieLabel" destination="XaE-sV-AGa" id="B5j-Ul-ZSv"/>
+                <outlet property="moviePosterImageView" destination="SRK-ke-nmX" id="8Dh-p9-V3a"/>
                 <outlet property="ratingView" destination="66i-d5-nBD" id="f4l-hx-QdG"/>
             </connections>
             <point key="canvasLocation" x="151.44927536231884" y="-26.116071428571427"/>

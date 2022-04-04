@@ -7,8 +7,7 @@
 
 import Foundation
 
-
-struct K {
+struct Constants {
     struct ProductionServer {
         static let baseURL = "https://api.themoviedb.org/3"
         static let imageURL = "https://image.tmdb.org/t/p/original/"

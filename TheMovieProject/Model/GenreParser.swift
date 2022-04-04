@@ -16,7 +16,7 @@ class GenreParser {
 
     
      init() {
-        TheMovieProject.APIClient.loadGenre( api_key: K.ProductionServer.api_key) {
+        TheMovieProject.APIClient.loadGenre( api_key: Constants.ProductionServer.api_key) {
             result in
                 switch result{
                 case .success(let genre):
@@ -24,13 +24,12 @@ class GenreParser {
                     for genre in genreItems{
                         self.genres[genre.id] = genre.name
                     }
-                    print(self.genres)
                 case .failure(let error):
                     print(error.localizedDescription)
                 
             }
             DispatchQueue.main.async {
-                self.delegate?.GenreLoaded()
+                self.delegate?.genreLoaded()
             }
         }
     }

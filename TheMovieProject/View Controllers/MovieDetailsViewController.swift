@@ -12,7 +12,6 @@ import AlamofireImage
 import SDWebImage
 import Cosmos
 class MovieDetailsViewController: UIViewController {
-    
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var movieLanguage: UILabel!
     @IBOutlet weak var movieGenre: UILabel!
@@ -20,44 +19,41 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var movieDescription: UILabel!
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var thumbnail: UIImageView!
-    
     @IBOutlet weak var ratingNumber: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
     var selectedMovie: Movie?
-    var genreParser : GenreParser? = GenreParser()
+    var genreParser: GenreParser? = GenreParser()
     var delegate: GenreDelegate?
-
-    
     override func viewWillAppear(_ animated: Bool) {
         genreParser?.delegate = self
         if let movie = selectedMovie {
             self.movieTitle.text = movie.original_title
             self.releaseDate.text = movie.release_date
-            if let language = LanguageType(rawValue: movie.original_language ?? "en"){
+            if let language = LanguageType(rawValue: movie.original_language ?? "en") {
                 self.movieLanguage.text = "Language: \(language.language)"
             }
             self.movieDescription.text = movie.overview
             var urlImage = ""
             do {
-                urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie.poster_path ?? "")").asURLRequest().url?.absoluteString ?? ""
-            }catch{
+                urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie.poster_path ?? "" )")
+                    .asURLRequest().url?.absoluteString ?? ""
+            } catch {
                 debugPrint(error)
             }
-            self.moviePoster.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
-            self.thumbnail.sd_setImage(with: URL(string:urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
-            self.ratingView.rating = RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 0.0)
+            self.moviePoster.sd_setImage(with: URL(string: urlImage ),
+                                         placeholderImage: UIImage(named: "placeholder.png"))
+            self.thumbnail.sd_setImage(with: URL(string: urlImage ),
+                                       placeholderImage: UIImage(named: "placeholder.png"))
+            self.ratingView.rating = RatingUtilites.map(minRange: 0, maxRange: 10,
+                                                        minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 0.0)
             self.ratingNumber.text = "\(RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 0.0)) / 10"
         }
-            
-        
     }
-
 
 override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
 }
-
 
 /*
  // MARK: - Navigation
@@ -70,27 +66,10 @@ override func viewDidLoad() {
  */
 
 }
-
-extension UIView {
-    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
-        layer.masksToBounds = false
-        layer.shadowColor = color.cgColor
-        layer.shadowOpacity = opacity
-        layer.shadowOffset = offSet
-        layer.shadowRadius = radius
-        
-        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-        layer.shouldRasterize = true
-        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
-    }
-}
-
-
-extension MovieDetailsViewController: GenreDelegate{
-    func GenreLoaded() {
+extension MovieDetailsViewController: GenreDelegate {
+    func genreLoaded() {
         if let genreArray = selectedMovie?.genre_ids {
         self.movieGenre.text = genreParser?.toString(genreArray)
         }
     }
 }
- 

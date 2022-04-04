@@ -207,9 +207,9 @@
                     <navigationItem key="navigationItem" id="POP-ey-K2c"/>
                     <size key="freeformSize" width="414" height="1100"/>
                     <connections>
-                        <outlet property="NowPlayingMovies" destination="UGu-9v-eU4" id="BtO-EW-PVm"/>
-                        <outlet property="PopularMovies" destination="RDS-ZD-nwp" id="2zh-jC-nNo"/>
-                        <outlet property="UpcomingMovies" destination="NKh-SP-mCX" id="WJm-dg-y6n"/>
+                        <outlet property="nowPlayingMoviesCollection" destination="UGu-9v-eU4" id="BtO-EW-PVm"/>
+                        <outlet property="opularMoviesCollection" destination="RDS-ZD-nwp" id="2zh-jC-nNo"/>
+                        <outlet property="upcomingMoviesCollection" destination="NKh-SP-mCX" id="WJm-dg-y6n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGA-lU-odV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -10,6 +10,6 @@ import Foundation
 
 protocol GenreDelegate {
     
-    func GenreLoaded()
+    func genreLoaded()
     
 }

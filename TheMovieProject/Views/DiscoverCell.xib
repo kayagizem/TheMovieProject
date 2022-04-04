@@ -68,9 +68,9 @@
             </collectionViewCellContentView>
             <size key="customSize" width="151" height="220"/>
             <connections>
-                <outlet property="MovieDuration" destination="jn6-Rz-LvL" id="dsi-Bh-zxQ"/>
-                <outlet property="MovieLabel" destination="7zI-PA-6Z3" id="Usl-sg-bCs"/>
-                <outlet property="MoviePoster" destination="FZ2-fp-fK4" id="kP1-2t-T2h"/>
+                <outlet property="movieDuration" destination="jn6-Rz-LvL" id="dsi-Bh-zxQ"/>
+                <outlet property="movieLabel" destination="7zI-PA-6Z3" id="Usl-sg-bCs"/>
+                <outlet property="moviePosterImageView" destination="FZ2-fp-fK4" id="kP1-2t-T2h"/>
             </connections>
             <point key="canvasLocation" x="240.57971014492756" y="131.58482142857142"/>
         </collectionViewCell>

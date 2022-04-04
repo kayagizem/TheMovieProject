@@ -66,9 +66,9 @@
                 </constraints>
             </collectionViewCellContentView>
             <connections>
-                <outlet property="MovieDuration" destination="4ER-Sr-e6u" id="MrA-te-Q5L"/>
-                <outlet property="MovieLabel" destination="YfF-qV-3rw" id="DsJ-KF-5Rh"/>
-                <outlet property="MoviePoster" destination="Ptj-T3-ooV" id="tMT-Bg-9fO"/>
+                <outlet property="movieDuration" destination="4ER-Sr-e6u" id="MrA-te-Q5L"/>
+                <outlet property="movieLabel" destination="YfF-qV-3rw" id="DsJ-KF-5Rh"/>
+                <outlet property="moviePosterImageView" destination="Ptj-T3-ooV" id="tMT-Bg-9fO"/>
             </connections>
             <point key="canvasLocation" x="798.55072463768124" y="131.58482142857142"/>
         </collectionViewCell>

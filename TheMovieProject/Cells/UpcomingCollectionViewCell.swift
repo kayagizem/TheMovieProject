@@ -9,8 +9,8 @@ import UIKit
 
 class UpcomingCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var MovieDuration: UILabel!
-    @IBOutlet weak var MoviePoster: UIImageView!
-    @IBOutlet weak var MovieLabel: UILabel!
+    @IBOutlet weak var movieDuration: UILabel!
+    @IBOutlet weak var moviePosterImageView: UIImageView!
+    @IBOutlet weak var movieLabel: UILabel!
     
 }

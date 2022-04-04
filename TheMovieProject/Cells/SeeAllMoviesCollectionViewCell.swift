@@ -10,9 +10,9 @@ import Cosmos
 
 class SeeAllMoviesCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var MovieLabel: UILabel!
+    @IBOutlet weak var movieLabel: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
-    @IBOutlet weak var MoviePoster: UIImageView!
-    @IBOutlet weak var MovieGenre: UILabel!
+    @IBOutlet weak var moviePosterImageView: UIImageView!
+    @IBOutlet weak var movieGenre: UILabel!
 }
 

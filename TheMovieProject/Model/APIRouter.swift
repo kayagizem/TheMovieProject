@@ -9,28 +9,23 @@ import Foundation
 import Alamofire
 
 enum APIRouter: URLRequestConvertible {
-    
-    case loadPopularMovies(api_key: String, language: String, page: Int, region: String)
-    case loadUpcomingMovies(api_key: String, language: String, page: Int, region: String)
-    case loadNow_PlayingMovies(api_key: String, language: String, page: Int, region: String)
-    case loadMovieDetail(movie_id: Int, api_key: String, language: String, append_to_response: String)
-    case loadMovieReview(movie_id: Int, api_key: String, language: String, page: Int)
-    case loadSimilarMovies(movie_id: Int, api_key: String, language: String, page: Int)
-    case loadImage(movie_poster_url: String)
-    case genreList(api_key: String)
+    case loadPopularMovies(apiKey: String, language: String, page: Int, region: String)
+    case loadUpcomingMovies(apiKey: String, language: String, page: Int, region: String)
+    case loadNowPlayingMovies(apiKey: String, language: String, page: Int, region: String)
+    case loadMovieDetail(movieId: Int, apiKey: String, language: String, appendToResponse: String)
+    case loadMovieReview(movieId: Int, apiKey: String, language: String, page: Int)
+    case loadSimilarMovies(movieId: Int, apiKey: String, language: String, page: Int)
+    case loadImage(moviePosterUrl: String)
+    case genreList(apiKey: String)
+    // MARK: - HTTPMethod
 
-
-
-    
-       // MARK: - HTTPMethod
-   
     private var method: HTTPMethod {
            switch self {
            case .loadPopularMovies(_, _, _, _):
                return .get
            case .loadUpcomingMovies(_, _, _, _):
                return .get
-           case .loadNow_PlayingMovies(_, _, _, _):
+           case .loadNowPlayingMovies(_, _, _, _):
                return .get
            case .loadMovieDetail(_, _, _, _):
                return .get
@@ -44,15 +39,14 @@ enum APIRouter: URLRequestConvertible {
                return .get
            }
        }
-       
        // MARK: - Path
        private var path: String {
            switch self {
            case .loadPopularMovies(_, _, _, _):
-               return "/movie/popular" //?api_key=\(api_key)&language=\(language)&page=\(page)
+               return "/movie/popular"
            case .loadUpcomingMovies( _, _, _, _):
                return "/movie/upcoming"
-           case .loadNow_PlayingMovies( _, _, _, _):
+           case .loadNowPlayingMovies( _, _, _, _):
                return "/movie/now_playing"
            case .loadMovieDetail(let movie_id, _, _, _):
                return "/movie/\(movie_id)"
@@ -64,13 +58,11 @@ enum APIRouter: URLRequestConvertible {
                return "\(movie_poster_url)"
            case .genreList(_):
                return "/genre/movie/list"
-
            }
        }
-       
        // MARK: - Parameters
        private var parameters: Parameters? {
-               switch self{
+               switch self {
                case .loadPopularMovies(let api_key, let language, let page, _):
                    return ["api_key": api_key,
                            "page": page,
@@ -79,7 +71,7 @@ enum APIRouter: URLRequestConvertible {
                    return ["api_key": api_key,
                            "page": page,
                            "language": language]
-               case .loadNow_PlayingMovies(let api_key, let language, let page, _):
+               case .loadNowPlayingMovies(let api_key, let language, let page, _):
                    return ["api_key": api_key,
                            "page": page,
                            "language": language]
@@ -102,52 +94,35 @@ enum APIRouter: URLRequestConvertible {
                    return ["api_key": api_key]
                }
        }
-       
-    
-    private var baseURL: String{
-            switch self{
-            
-            case .loadPopularMovies(api_key: _, language: _, page: _, region: _):
-                return K.ProductionServer.baseURL
-            case .loadUpcomingMovies(api_key: _, language: _, page: _, region: _):
-                return K.ProductionServer.baseURL
-
-            case .loadNow_PlayingMovies(api_key: _, language: _, page: _, region: _):
-                return K.ProductionServer.baseURL
-
-            case .loadMovieDetail(movie_id: _, api_key: _, language: _, append_to_response: _):
-                return K.ProductionServer.baseURL
-
-            case .loadMovieReview(movie_id: _, api_key: _, language: _, page: _):
-                return K.ProductionServer.baseURL
-
-            case .loadSimilarMovies(movie_id: _, api_key: _, language: _, page: _):
-                return K.ProductionServer.baseURL
-
-            case .loadImage(movie_poster_url: _):
-                return K.ProductionServer.imageURL
-
+    private var baseURL: String {
+            switch self {
+            case .loadPopularMovies(apiKey: _, language: _, page: _, region: _):
+                return Constants.ProductionServer.baseURL
+            case .loadUpcomingMovies(apiKey: _, language: _, page: _, region: _):
+                return Constants.ProductionServer.baseURL
+            case .loadNowPlayingMovies(apiKey: _, language: _, page: _, region: _):
+                return Constants.ProductionServer.baseURL
+            case .loadMovieDetail(movieId: _, apiKey: _, language: _, appendToResponse: _):
+                return Constants.ProductionServer.baseURL
+            case .loadMovieReview(movieId: _, apiKey: _, language: _, page: _):
+                return Constants.ProductionServer.baseURL
+            case .loadSimilarMovies(movieId: _, apiKey: _, language: _, page: _):
+                return Constants.ProductionServer.baseURL
+            case .loadImage(moviePosterUrl: _):
+                return Constants.ProductionServer.imageURL
             case .genreList:
-                return K.ProductionServer.baseURL
+                return Constants.ProductionServer.baseURL
             }
     }
-    
-    
        // MARK: - URLRequestConvertible
        func asURLRequest() throws -> URLRequest {
-        
-          //let url = try K.ProductionServer.imageURL.asURL()
-           
            let url = try self.baseURL.asURL()
-           
            var urlRequest = URLRequest(url: url.appendingPathComponent(path))
-           
            // HTTP Method
            urlRequest.httpMethod = method.rawValue
            // Common Headers
            urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
            urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-    
            // Parameters
            if let parameters = parameters {
             if method == HTTPMethod.post {
@@ -160,7 +135,6 @@ enum APIRouter: URLRequestConvertible {
                               urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
                           }
            }
-           print(urlRequest)
            return urlRequest
        }
 

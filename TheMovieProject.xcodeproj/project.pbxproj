@@ -12,6 +12,7 @@
 		051D992D2760E08C00DC615D /* MostPopulerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D992C2760E08C00DC615D /* MostPopulerCollectionViewCell.swift */; };
 		051D992F2760E0DA00DC615D /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D992E2760E0DA00DC615D /* DiscoverViewController.swift */; };
 		051D99322760F3A100DC615D /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D99312760F3A100DC615D /* APIRouter.swift */; };
+		0521100227FA2CCC00E78C89 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0521100127FA2CCC00E78C89 /* .swiftlint.yml */; };
 		05392D122773783300B77B6F /* Pods_TheMovieProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF20526BD1ABD5274C661AC /* Pods_TheMovieProject.framework */; };
 		05392D152773783400B77B6F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05392D0E2773772F00B77B6F /* Alamofire.framework */; };
 		054232F1276E04F000478E18 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054232F0276E04F000478E18 /* APIClient.swift */; };
@@ -55,6 +56,7 @@
 		051D992C2760E08C00DC615D /* MostPopulerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopulerCollectionViewCell.swift; sourceTree = "<group>"; };
 		051D992E2760E0DA00DC615D /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		051D99312760F3A100DC615D /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		0521100127FA2CCC00E78C89 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		05392D0E2773772F00B77B6F /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054232F0276E04F000478E18 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		0553B8152746ADAB00F84EE3 /* TheMovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +145,7 @@
 		0553B80C2746ADAB00F84EE3 = {
 			isa = PBXGroup;
 			children = (
+				0521100127FA2CCC00E78C89 /* .swiftlint.yml */,
 				0553B8172746ADAB00F84EE3 /* TheMovieProject */,
 				0553B8162746ADAB00F84EE3 /* Products */,
 				B670A87BBD61C173C4D681A5 /* Pods */,
@@ -255,6 +258,7 @@
 			buildConfigurationList = 0553B8292746ADAF00F84EE3 /* Build configuration list for PBXNativeTarget "TheMovieProject" */;
 			buildPhases = (
 				FE4DFB22C166B19E47A6C4FA /* [CP] Check Pods Manifest.lock */,
+				0521100027FA200C00E78C89 /* ShellScript */,
 				0553B8112746ADAB00F84EE3 /* Sources */,
 				0553B8122746ADAB00F84EE3 /* Frameworks */,
 				0553B8132746ADAB00F84EE3 /* Resources */,
@@ -307,6 +311,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0521100227FA2CCC00E78C89 /* .swiftlint.yml in Resources */,
 				0553B8252746ADAF00F84EE3 /* LaunchScreen.storyboard in Resources */,
 				0553B8222746ADAF00F84EE3 /* Assets.xcassets in Resources */,
 				055743C227E10CA700F8CFE3 /* PopularMoviesCell.xib in Resources */,
@@ -324,6 +329,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0521100027FA200C00E78C89 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		11F93AFEA2ED3A2D22BD501C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

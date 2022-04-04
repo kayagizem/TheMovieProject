@@ -36,7 +36,7 @@ class APIClient {
     
     static func loadNow_PlayingMovies(api_key: String, language: String, page: Int, region: String, completion:@escaping (Result<Results,AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
-        AF.request(APIRouter.loadNow_PlayingMovies(api_key: api_key, language: language, page: page, region: region))
+        AF.request(APIRouter.loadNowPlayingMovies(api_key: api_key, language: language, page: page, region: region))
             .responseDecodable (decoder: jsonDecoder) { (response: DataResponse<Results,AFError>) in
                     completion(response.result)
             }
@@ -69,8 +69,6 @@ class APIClient {
         AF.request(APIRouter.genreList(api_key: api_key))
             .responseDecodable (decoder: jsonDecoder) { (response: DataResponse<GenreResponse,AFError>) in
                 completion(response.result)
-                print("genreload")
-                print(response)
             }
     }
     }
