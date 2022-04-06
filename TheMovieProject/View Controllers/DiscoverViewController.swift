@@ -13,16 +13,17 @@ import SDWebImage
 class DiscoverViewController: UIViewController, UICollectionViewDelegate {
     var contentOffset: CGFloat = 0
     var dataSource = DataSource()
-    // swiftlint:disable force_cast
+    
     @IBAction func upcomingTapped(_ sender: Any) {
-        let storyboard: UIStoryboard? = UIStoryboard(name: "MoviesAllView", bundle: nil)
-        let moviesListViewController: SeeMoviesViewController =
-        storyboard?.instantiateViewController(withIdentifier: "SeeMoviesViewController")
-        as! SeeMoviesViewController
+        let storyboard = UIStoryboard(name: "MoviesAllView", bundle: nil)
+        guard let moviesListViewController = storyboard.instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
+            fatalError("Incorrect storyboard or view controller identifier.")
+        }
         moviesListViewController.type = "Upcoming"
         moviesListViewController.dataSource = dataSource
         navigationController?.pushViewController(moviesListViewController, animated: true)
     }
+    
     @IBAction func mostPopularTapped(_ sender: Any) {
         let storyboard: UIStoryboard? = UIStoryboard(name: "MoviesAllView", bundle: nil)
         let moviesListViewController: SeeMoviesViewController =
@@ -31,6 +32,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         moviesListViewController.dataSource = dataSource
         navigationController?.pushViewController(moviesListViewController, animated: true)
     }
+    
     @IBAction func nowPlayingTapped(_ sender: Any) {
         let storyboard: UIStoryboard? = UIStoryboard(name: "MoviesAllView", bundle: nil)
         let moviesListViewController: SeeMoviesViewController =
@@ -38,8 +40,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         moviesListViewController.type = "NowPlaying"
         moviesListViewController.dataSource = dataSource
         navigationController?.pushViewController(moviesListViewController, animated: true)
-            }
-    // swiftlint:disable force_cast
+    }
+    
     @IBOutlet weak var nowPlayingMoviesCollection: UICollectionView!
     @IBOutlet weak var upcomingMoviesCollection: UICollectionView!
     @IBOutlet weak var opularMoviesCollection: UICollectionView!
@@ -59,17 +61,20 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         if segue.identifier == "UpcomingAll",
             let seeMoviesViewController  = segue.destination as? SeeMoviesViewController {
             seeMoviesViewController.type = "Upcoming"
-            }
+        }
+        
         if segue.identifier == "MostPopularAll",
             let seeMoviesViewController  = segue.destination as? SeeMoviesViewController {
             seeMoviesViewController.type = "Most Popular"
-            }
+        }
+        
         if segue.identifier == "NowPlayingAll",
             let seeMoviesViewController  = segue.destination as? SeeMoviesViewController {
             seeMoviesViewController.type = "NowPlaying"
-            }
+        }
 
     }
+    
     func registerNibCell() {
         let  discoverCellNib: UINib =  UINib(nibName: "DiscoverCell", bundle: nil)
         upcomingMoviesCollection.register(discoverCellNib, forCellWithReuseIdentifier: "UpcomingCell")
@@ -121,8 +126,9 @@ extension DiscoverViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
     -> UICollectionViewCell {
         if collectionView == self.opularMoviesCollection {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularMoviesCell", for: indexPath)
-            as! MostPopulerCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularMoviesCell", for: indexPath) as? MostPopulerCollectionViewCell else {
+                fatalError("Invalid cell identifier.")
+            }
             let movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
             cell.movieLabel.text = movie.original_title
             cell.movieDuration.text = "Duration"

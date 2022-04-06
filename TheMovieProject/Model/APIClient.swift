@@ -8,12 +8,14 @@
 import Foundation
 import Alamofire
 
+//TODO: Alamofire should only used in one network component
+
 class APIClient {
     
-   static func loadImage(movie_poster_url: String, completion:@escaping (Result<Results,AFError>)->Void) {
+   static func loadImage(movie_poster_url: String, completion:@escaping (Result<Results, AFError>)->Void) {
          let jsonDecoder = JSONDecoder()
         AF.request(APIRouter.loadImage(movie_poster_url: movie_poster_url))
-             .responseDecodable (decoder: jsonDecoder) { (response: DataResponse<Results,AFError>) in
+             .responseDecodable (decoder: jsonDecoder) { (response: DataResponse<Results, AFError>) in
                      completion(response.result)
              }
          }
@@ -21,7 +23,7 @@ class APIClient {
    static func loadPopularMovies(api_key: String, language: String, page: Int, region: String, completion:@escaping (Result<Results,AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         AF.request(APIRouter.loadPopularMovies(api_key: api_key, language: language, page: page, region: region))
-            .responseDecodable (decoder: jsonDecoder) { (response: DataResponse<Results,AFError>) in
+            .responseDecodable (decoder: jsonDecoder) { (response: DataResponse<Results, AFError>) in
                     completion(response.result)
             }
         }
@@ -29,7 +31,7 @@ class APIClient {
     static func loadUpcomingMovies(api_key: String, language: String, page: Int, region: String, completion:@escaping (Result<Results,AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         AF.request(APIRouter.loadUpcomingMovies(api_key: api_key, language: language, page: page, region: region))
-            .responseDecodable (decoder: jsonDecoder) { (response: DataResponse<Results,AFError>) in
+            .responseDecodable (decoder: jsonDecoder) { (response: DataResponse<Results, AFError>) in
                     completion(response.result)
             }
         }
