@@ -70,7 +70,7 @@
                 <outlet property="movieLabel" destination="YfF-qV-3rw" id="DsJ-KF-5Rh"/>
                 <outlet property="moviePosterImageView" destination="Ptj-T3-ooV" id="tMT-Bg-9fO"/>
             </connections>
-            <point key="canvasLocation" x="798.55072463768124" y="131.58482142857142"/>
+            <point key="canvasLocation" x="786" y="114"/>
         </collectionViewCell>
     </objects>
 </document>

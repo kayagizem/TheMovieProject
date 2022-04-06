@@ -9,14 +9,14 @@ import Foundation
 import Alamofire
 
 enum APIRouter: URLRequestConvertible {
-    case loadPopularMovies(apiKey: String, language: String, page: Int, region: String)
-    case loadUpcomingMovies(apiKey: String, language: String, page: Int, region: String)
-    case loadNowPlayingMovies(apiKey: String, language: String, page: Int, region: String)
-    case loadMovieDetail(movieId: Int, apiKey: String, language: String, appendToResponse: String)
-    case loadMovieReview(movieId: Int, apiKey: String, language: String, page: Int)
-    case loadSimilarMovies(movieId: Int, apiKey: String, language: String, page: Int)
-    case loadImage(moviePosterUrl: String)
-    case genreList(apiKey: String)
+    case loadPopularMovies(api_key: String, language: String, page: Int, region: String)
+    case loadUpcomingMovies(api_key: String, language: String, page: Int, region: String)
+    case loadNowPlayingMovies(api_key: String, language: String, page: Int, region: String)
+    case loadMovieDetail(movie_id: Int, api_key: String, language: String, append_to_response: String)
+    case loadMovieReview(movie_id: Int, api_key: String, language: String, page: Int)
+    case loadSimilarMovies(movie_id: Int, api_key: String, language: String, page: Int)
+    case loadImage(movie_poster_url: String)
+    case genreList(api_key: String)
     // MARK: - HTTPMethod
 
     private var method: HTTPMethod {
@@ -96,19 +96,19 @@ enum APIRouter: URLRequestConvertible {
        }
     private var baseURL: String {
             switch self {
-            case .loadPopularMovies(apiKey: _, language: _, page: _, region: _):
+            case .loadPopularMovies(api_key: _, language: _, page: _, region: _):
                 return Constants.ProductionServer.baseURL
-            case .loadUpcomingMovies(apiKey: _, language: _, page: _, region: _):
+            case .loadUpcomingMovies(api_key: _, language: _, page: _, region: _):
                 return Constants.ProductionServer.baseURL
-            case .loadNowPlayingMovies(apiKey: _, language: _, page: _, region: _):
+            case .loadNowPlayingMovies(api_key: _, language: _, page: _, region: _):
                 return Constants.ProductionServer.baseURL
-            case .loadMovieDetail(movieId: _, apiKey: _, language: _, appendToResponse: _):
+            case .loadMovieDetail(movie_id: _, api_key: _, language: _, append_to_response: _):
                 return Constants.ProductionServer.baseURL
-            case .loadMovieReview(movieId: _, apiKey: _, language: _, page: _):
+            case .loadMovieReview(movie_id: _, api_key: _, language: _, page: _):
                 return Constants.ProductionServer.baseURL
-            case .loadSimilarMovies(movieId: _, apiKey: _, language: _, page: _):
+            case .loadSimilarMovies(movie_id: _, api_key: _, language: _, page: _):
                 return Constants.ProductionServer.baseURL
-            case .loadImage(moviePosterUrl: _):
+            case .loadImage(movie_poster_url: _):
                 return Constants.ProductionServer.imageURL
             case .genreList:
                 return Constants.ProductionServer.baseURL

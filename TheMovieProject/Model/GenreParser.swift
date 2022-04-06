@@ -10,18 +10,16 @@ import UIKit
 import Foundation
 
 class GenreParser {
-    
     var genres : [Int: String] = [:]
     var delegate: GenreDelegate?
 
-    
      init() {
         TheMovieProject.APIClient.loadGenre( api_key: Constants.ProductionServer.api_key) {
             result in
-                switch result{
+                switch result {
                 case .success(let genre):
                     guard let genreItems = genre.genres else {return}
-                    for genre in genreItems{
+                    for genre in genreItems {
                         self.genres[genre.id] = genre.name
                     }
                 case .failure(let error):

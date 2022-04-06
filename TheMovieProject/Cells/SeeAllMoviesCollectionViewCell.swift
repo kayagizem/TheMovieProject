@@ -15,4 +15,3 @@ class SeeAllMoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var movieGenre: UILabel!
 }
-
