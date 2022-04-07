@@ -3,12 +3,13 @@ import UIKit
 
 @IBDesignable
 class CarouselItem: UIView {
-    static let CAROUSEL_ITEM_NIB = "carouselItem"
+    static let carouselItemNib = "carouselItem"
     
-    @IBOutlet var vwContent: UIView!
-    @IBOutlet weak var vwBackground: UIView!
-    @IBOutlet weak var image: UIImageView!
+    // MARK: - Outlets
     
+    @IBOutlet weak private var vwContent: UIView!
+    @IBOutlet weak private var vwBackground: UIView!
+    @IBOutlet weak private var image: UIImageView!
     
     // MARK: - Init
     
@@ -28,8 +29,8 @@ class CarouselItem: UIView {
         vwBackground.backgroundColor = background
     }
     
-    fileprivate func initWithNib() {
-        Bundle.main.loadNibNamed(CarouselItem.CAROUSEL_ITEM_NIB, owner: self, options: nil)
+    private func initWithNib() {
+        Bundle.main.loadNibNamed(CarouselItem.carouselItemNib, owner: self, options: nil)
         vwContent.frame = bounds
         vwContent.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         addSubview(vwContent)

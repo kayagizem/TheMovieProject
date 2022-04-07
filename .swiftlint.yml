@@ -1,14 +1,4 @@
 # rule identifiers turned on by default to exclude from running
-disabled_rules:
-   - force_cast
-   - line_length
-   - empty_enum_arguments
-   - identifier_name
-   - redundant_string_enum_value
-   - class_delegate_protocol
-   - file_length
-   - type_name
-   - type_body_length
-   - function_body_length
-   - identifier_name
-   - line_length
+excluded:
+  - Pods
+

@@ -36,7 +36,7 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
             dataSource?.loadNow_PlayingMovies(page: page)
         }
     }
-    // swiftlint:disable force_cast
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! SeeAllMoviesCollectionViewCell
         if let indexPath = allMoviesCollection.indexPath(for: cell) {
