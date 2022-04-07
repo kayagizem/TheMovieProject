@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class CarouselPageViewController: UIPageViewController {
-    
     fileprivate var items: [UIViewController] = []
     
     override func viewDidLoad() {
@@ -24,21 +23,18 @@ class CarouselPageViewController: UIPageViewController {
         pc.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    
     fileprivate func populateItems() {
         let images: [UIImage] = [
             UIImage(named: "background1")!,
             UIImage(named: "background2")!,
             UIImage(named: "background3")!
         ]
-        let backgroundColor:[UIColor] = [.blue, .red, .green]
-        
+        let backgroundColor: [UIColor] = [.blue, .red, .green]
         for (index, t) in images.enumerated() {
             let c = createCarouselItemControler(with: t, with: backgroundColor[index])
             items.append(c)
         }
     }
-    
     fileprivate func createCarouselItemControler(with imageTitle: UIImage?, with color: UIColor?) -> UIViewController {
         let c = UIViewController()
         c.view = CarouselItem(imageName: imageTitle, background: color)
@@ -63,10 +59,8 @@ extension CarouselPageViewController: UIPageViewControllerDataSource {
         guard items.count > previousIndex else {
             return nil
         }
-        
         return items[previousIndex]
     }
-    
     func pageViewController(_: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = items.firstIndex(of: viewController) else {
             return nil
@@ -93,7 +87,6 @@ extension CarouselPageViewController: UIPageViewControllerDataSource {
               let firstViewControllerIndex = items.firstIndex(of: firstViewController) else {
                 return 0
         }
-        
         return firstViewControllerIndex
     }
 }

@@ -10,5 +10,4 @@ disabled_rules:
    - type_name
    - type_body_length
    - function_body_length
-   - identifier_name
-   - line_length
+   - redundant_optional_initialization

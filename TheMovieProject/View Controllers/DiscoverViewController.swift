@@ -13,7 +13,6 @@ import SDWebImage
 class DiscoverViewController: UIViewController, UICollectionViewDelegate {
     var contentOffset: CGFloat = 0
     var dataSource = DataSource()
-    // swiftlint:disable force_cast
     @IBAction func upcomingTapped(_ sender: Any) {
         let storyboard: UIStoryboard? = UIStoryboard(name: "MoviesAllView", bundle: nil)
         let moviesListViewController: SeeMoviesViewController =
@@ -39,7 +38,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         moviesListViewController.dataSource = dataSource
         navigationController?.pushViewController(moviesListViewController, animated: true)
             }
-    // swiftlint:disable force_cast
     @IBOutlet weak var nowPlayingMoviesCollection: UICollectionView!
     @IBOutlet weak var upcomingMoviesCollection: UICollectionView!
     @IBOutlet weak var opularMoviesCollection: UICollectionView!

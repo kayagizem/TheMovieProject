@@ -10,19 +10,19 @@ import UIKit
 import Foundation
 
 class GenreParser {
-    var genres : [Int: String] = [:]
+    var genres: [Int: String] = [:]
     var delegate: GenreDelegate?
 
      init() {
         TheMovieProject.APIClient.loadGenre( api_key: Constants.ProductionServer.api_key) {
             result in
-                switch result {
-                case .success(let genre):
+            switch result {
+            case .success(let genre):
                     guard let genreItems = genre.genres else {return}
                     for genre in genreItems {
                         self.genres[genre.id] = genre.name
                     }
-                case .failure(let error):
+            case .failure(let error):
                     print(error.localizedDescription)
                 
             }
@@ -31,21 +31,16 @@ class GenreParser {
             }
         }
     }
-   
-    
     func toGenresArray(_ genreIds: [Int]) -> [String] {
-        var result : [String] = []
-        for id in genreIds{
-            if let _genre = self.genres[id]{
+        var result: [String] = []
+        for id in genreIds {
+            if let _genre = self.genres[id] {
                 result.append(_genre)
             }
         }
         return result
     }
-    
-    func toString(_ genreIds: [Int])  -> String {
+    func toString(_ genreIds: [Int]) -> String {
         return toGenresArray(genreIds).joined(separator: " | ")
     }
-    
-    
 }

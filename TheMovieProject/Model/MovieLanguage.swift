@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-
 public enum LanguageType: String, CaseIterable {
     case ab = "ab"
     case aa = "aa"
@@ -388,6 +386,4 @@ extension LanguageType {
         case .zu: return "Zulu"
         }
     }
-
-       
 }

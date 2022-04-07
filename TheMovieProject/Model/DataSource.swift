@@ -17,7 +17,7 @@ class DataSource {
     func appendMovies(movie: Movie) {
     }
     func loadPopularMovies(page: Int) {
-        APIClient.loadPopularMovies(api_key: Constants.ProductionServer.api_key, language: Constants.ProductionServer.default_lang, page: page, region: "US") { result in
+        APIClient.loadPopular Movies(api_key: Constants.ProductionServer.api_key, language: Constants.ProductionServer.default_lang, page: page, region: "US") { result in
             switch result {
             case .success(let movie):
                 self.popularMoviesList.append(contentsOf: movie.results!)

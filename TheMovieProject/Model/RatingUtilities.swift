@@ -7,9 +7,8 @@
 
 import Foundation
 
-
 class RatingUtilites {
-    static func map(minRange:Double, maxRange:Double, minDomain:Double, maxDomain:Double, value:Double) -> Double {
+    static func map (minRange: Double, maxRange: Double, minDomain: Double, maxDomain: Double, value: Double) -> Double {
         return minDomain + (maxDomain - minDomain) * (value - minRange) / (maxRange - minRange)
     }
 }
