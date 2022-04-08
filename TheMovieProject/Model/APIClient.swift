@@ -9,8 +9,6 @@ import Foundation
 import Alamofire
 
 // TODO: Alamofire should only used in one network component 
-// TODO: Alamofire should only used in one network component
-
 class APIClient {
     static func loadImage(movie_poster_url: String, completion:@escaping (Result<Results, AFError>) -> Void) {
         let jsonDecoder = JSONDecoder()
