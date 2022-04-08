@@ -12,7 +12,7 @@ struct Results: Codable {
     var total_results: Int
     var total_pages: Int
     var results: [Movie]?
-    
+
      enum CodingKeys: String, CodingKey {
         case page = "page"
         case total_results = "total_results"

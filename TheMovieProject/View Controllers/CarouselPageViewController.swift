@@ -61,7 +61,7 @@ class CarouselPageViewController: UIPageViewController {
 // MARK: - DataSource
 
 extension CarouselPageViewController: UIPageViewControllerDataSource {
-    func pageViewController(_: UIPageViewController,viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = items.firstIndex(of: viewController) else {
             return nil
         }
@@ -74,7 +74,7 @@ extension CarouselPageViewController: UIPageViewControllerDataSource {
         }
         return items[previousIndex]
     }
-    func pageViewController(_: UIPageViewController,viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = items.firstIndex(of: viewController) else {
             return nil
         }

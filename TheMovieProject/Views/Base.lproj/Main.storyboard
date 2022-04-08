@@ -8,17 +8,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Container View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TheMovieProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ContainerViewController" customModule="TheMovieProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UYP-pY-7Xj">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYP-pY-7Xj">
+                                <rect key="frame" x="0.0" y="-5" width="414" height="908"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="JCM-Vn-yxc" kind="embed" id="1du-HD-2VS"/>
                                 </connections>
@@ -60,7 +60,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gWE-4a-vHq">
-                                <rect key="frame" x="282" y="765.33333333333337" width="19.666666666666686" height="14.666666666666629"/>
+                                <rect key="frame" x="284" y="765.33333333333337" width="19.666666666666686" height="14.666666666666629"/>
                                 <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
                             </imageView>
                         </subviews>
@@ -71,7 +71,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mrD-Y6-Pts" secondAttribute="trailing" constant="20" id="UVI-yv-EUe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2Nd-5p-dEF" secondAttribute="bottom" constant="70" id="UhT-ka-VkW"/>
                             <constraint firstItem="mrD-Y6-Pts" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="XaL-R6-nTc"/>
-                            <constraint firstItem="gWE-4a-vHq" firstAttribute="trailing" secondItem="2Nd-5p-dEF" secondAttribute="trailing" id="fBd-fj-iUl"/>
+                            <constraint firstItem="gWE-4a-vHq" firstAttribute="trailing" secondItem="2Nd-5p-dEF" secondAttribute="trailing" constant="2" id="fBd-fj-iUl"/>
                             <constraint firstItem="mrD-Y6-Pts" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="h7g-12-8oE"/>
                             <constraint firstItem="mrD-Y6-Pts" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rbT-Cd-nIp"/>
                             <constraint firstItem="2Nd-5p-dEF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wk6-dt-DRm"/>

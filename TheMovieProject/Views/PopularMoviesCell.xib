@@ -71,7 +71,7 @@
                 <outlet property="movieLabel" destination="CaJ-JW-sW4" id="HAP-1h-5rw"/>
                 <outlet property="moviePosterImageView" destination="kDn-VX-dyk" id="Y8D-Tr-DMF"/>
             </connections>
-            <point key="canvasLocation" x="400" y="28"/>
+            <point key="canvasLocation" x="400.00000000000006" y="27.790178571428569"/>
         </collectionViewCell>
     </objects>
 </document>

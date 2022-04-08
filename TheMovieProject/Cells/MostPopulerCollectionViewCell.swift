@@ -7,10 +7,12 @@
 
 import UIKit
 
+/*
 class MostPopulerCollectionViewCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var movieLabel: UILabel!
     @IBOutlet weak var movieDuration: UILabel!
-    
+
 }
+*/

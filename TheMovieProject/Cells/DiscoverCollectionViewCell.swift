@@ -7,10 +7,10 @@
 
 import UIKit
 
-class UpcomingCollectionViewCell: UICollectionViewCell {
+class DiscoverCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var movieDuration: UILabel!
     @IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var movieLabel: UILabel!
-    
+
 }

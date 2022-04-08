@@ -40,7 +40,7 @@
                                                                     <color key="baseForegroundColor" red="0.0078431372550000003" green="0.58039215690000001" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="UpcomingTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="6bO-Bw-BEY"/>
+                                                                    <action selector="upcomingTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="nVn-eu-dIr"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -79,7 +79,7 @@
                                                                     <color key="baseForegroundColor" red="0.0078431372550000003" green="0.58039215690000001" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="MostPopularTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="o8h-oT-r0o"/>
+                                                                    <action selector="mostPopularTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="31h-yr-X1l"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -118,7 +118,7 @@
                                                                     <color key="baseForegroundColor" red="0.0078431372550000003" green="0.58039215690000001" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="NowPlayingTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="p4v-Ik-lFd"/>
+                                                                    <action selector="nowPlayingTapped:" destination="JK6-cq-K3M" eventType="touchUpInside" id="5mW-bF-X8K"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -208,7 +208,7 @@
                     <size key="freeformSize" width="414" height="1100"/>
                     <connections>
                         <outlet property="nowPlayingMoviesCollection" destination="UGu-9v-eU4" id="BtO-EW-PVm"/>
-                        <outlet property="opularMoviesCollection" destination="RDS-ZD-nwp" id="2zh-jC-nNo"/>
+                        <outlet property="popularMoviesCollection" destination="RDS-ZD-nwp" id="2zh-jC-nNo"/>
                         <outlet property="upcomingMoviesCollection" destination="NKh-SP-mCX" id="WJm-dg-y6n"/>
                     </connections>
                 </viewController>

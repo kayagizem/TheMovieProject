@@ -3,18 +3,18 @@ import UIKit
 
 class CarouselPageViewController: UIPageViewController {
     fileprivate var items: [UIViewController] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
         decoratePageControl()
         populateItems()
-        
+
         if let firstViewController = items.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
     }
-    
+
     fileprivate func decoratePageControl() {
         let pc = UIPageControl.appearance(whenContainedInInstancesOf: [CarouselPageViewController.self])
         pc.currentPageIndicatorTintColor = UIColor(red: 2.0 / 255.0, green: 148.0 / 255.0, blue: 165.0 / 255.0, alpha: 0.4)
@@ -49,13 +49,13 @@ extension CarouselPageViewController: UIPageViewControllerDataSource {
         guard let viewControllerIndex = items.firstIndex(of: viewController) else {
             return nil
         }
-        
+
         let previousIndex = viewControllerIndex - 1
-        
+
         guard previousIndex >= 0 else {
             return items.last
         }
-        
+
         guard items.count > previousIndex else {
             return nil
         }
@@ -65,23 +65,23 @@ extension CarouselPageViewController: UIPageViewControllerDataSource {
         guard let viewControllerIndex = items.firstIndex(of: viewController) else {
             return nil
         }
-        
+
         let nextIndex = viewControllerIndex + 1
         guard items.count != nextIndex else {
             return items.first
         }
-        
+
         guard items.count > nextIndex else {
             return nil
         }
-        
+
         return items[nextIndex]
     }
-    
+
     func presentationCount(for _: UIPageViewController) -> Int {
         return items.count
     }
-    
+
     func presentationIndex(for _: UIPageViewController) -> Int {
         guard let firstViewController = viewControllers?.first,
               let firstViewControllerIndex = items.firstIndex(of: firstViewController) else {

@@ -12,6 +12,7 @@ import SDWebImage
 import Cosmos
 
 class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate {
+
     var isLoadingMore: Bool = false
     var page: Int = 1
     var delegate: DataSourceDelegate?
@@ -20,6 +21,7 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
     var movies: [Movie] = []
     let ratingCosmos = CosmosView()
     @IBOutlet weak var allMoviesCollection: UICollectionView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNibCell()
@@ -27,6 +29,7 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
         dataSource?.delegate = self
         allMoviesCollection.dataSource = self
         allMoviesCollection.delegate = self
+
         self.title = "\(type) Movies"
         if  type == "Most Popular" {
             dataSource?.loadPopularMovies(page: page)
@@ -35,8 +38,9 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
         } else {
             dataSource?.loadNow_PlayingMovies(page: page)
         }
+
     }
-    // swiftlint:disable force_cast
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! SeeAllMoviesCollectionViewCell
         if let indexPath = allMoviesCollection.indexPath(for: cell) {
@@ -55,16 +59,19 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
             }
         }
     }
+
     func registerNibCell() {
         let  moviesAllCellNib: UINib =  UINib(nibName: "MoviesAllCell", bundle: nil)
         allMoviesCollection.register(moviesAllCellNib, forCellWithReuseIdentifier: "SeeAll")
     }
+
 }
 
 extension SeeMoviesViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if type == "Most Popular"{
             return dataSource?.getNumberOfPopularMovies() ??  0
@@ -74,6 +81,7 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
             return dataSource?.getNumberOfNowPlayingMovies() ?? 0
         }
     }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
     -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SeeAll", for: indexPath)
@@ -102,6 +110,7 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
                                                     maxDomain: 5, value: movie?.vote_average ?? 60.0)
         return cell
     }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.allMoviesCollection.contentOffset.y >=
             (self.allMoviesCollection.contentSize.height - self.allMoviesCollection.bounds.size.height) {
@@ -120,6 +129,7 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
             }
         }
     }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard: UIStoryboard? = UIStoryboard(name: "MovieDetailView", bundle: nil)
         let movieDetailsViewController: MovieDetailsViewController =
@@ -144,14 +154,17 @@ extension SeeMoviesViewController: DataSourceDelegate {
             allMoviesCollection.reloadData()
         }
     }
+
     func upcomingLoaded() {
         if type == "Upcoming"{
             allMoviesCollection.reloadData()
         }
     }
+
     func nowPlayingLoaded() {
         if type == "NowPlaying"{
             allMoviesCollection.reloadData()
         }
     }
+
 }
