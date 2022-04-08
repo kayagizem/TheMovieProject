@@ -134,6 +134,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
         if collectionView == self.popularMoviesCollection {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCell", for: indexPath) as? DiscoverCollectionViewCell else {
                 fatalError("Invalid cell identifier.")
+                 fatalError("Invalid cell identifier.")
             }
             let movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
             cell.movieLabel.text = movie.original_title
