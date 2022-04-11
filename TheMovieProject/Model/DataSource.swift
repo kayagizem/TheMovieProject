@@ -19,7 +19,10 @@ class DataSource {
     }
 
     func loadPopularMovies(page: Int) {
-        APIClient.loadPopularMovies(api_key: Constants.ProductionServer.api_key, language: Constants.ProductionServer.default_lang, page: page, region: "US") { result in
+        APIClient.loadPopularMovies(apiKey: Constants.ProductionServer.apiKey,
+                                    language: Constants.ProductionServer.defaultLang,
+                                    page: page,
+                                    region: "US") { result in
             switch result {
             case .success(let movie):
                 self.popularMoviesList.append(contentsOf: movie.results!)
@@ -33,7 +36,9 @@ class DataSource {
     }
 
     func loadUpcomingMovies(page: Int) {
-        APIClient.loadUpcomingMovies(api_key: Constants.ProductionServer.api_key, language: Constants.ProductionServer.default_lang, page: page, region: "US") { result in
+        APIClient.loadUpcomingMovies(apiKey: Constants.ProductionServer.apiKey,
+                                     language: Constants.ProductionServer.defaultLang,
+                                     page: page, region: "US") { result in
             switch result {
             case .success(let movie):
                 self.upcomingMoviesList.append(contentsOf: movie.results!)
@@ -47,7 +52,9 @@ class DataSource {
     }
 
     func loadNow_PlayingMovies(page: Int) {
-        TheMovieProject.APIClient.loadNow_PlayingMovies(api_key: Constants.ProductionServer.api_key, language: Constants.ProductionServer.default_lang, page: page, region: "US") { result in
+        TheMovieProject.APIClient.loadNow_PlayingMovies(apiKey: Constants.ProductionServer.apiKey,
+                                                        language: Constants.ProductionServer.defaultLang,
+                                                        page: page, region: "US") { result in
             switch result {
             case .success(let movie):
                 self.nowPlayingMoviesList.append(contentsOf: movie.results!)
@@ -61,9 +68,10 @@ class DataSource {
     }
 
     func loadMovieDetail() {
-        TheMovieProject.APIClient.loadMovieDetail(movie_id: 550,
-                                                  api_key: Constants.ProductionServer.api_key,
-                                                  language: Constants.ProductionServer.default_lang, append_to_response: "credits" ) { result in
+        TheMovieProject.APIClient.loadMovieDetail(movieId: 550,
+                                                  apiKey: Constants.ProductionServer.apiKey,
+                                                  language: Constants.ProductionServer.defaultLang,
+                                                  appendToResponse: "credits" ) { result in
             switch result {
             case .success(let movie):
                 print("\n detail \n")
@@ -75,7 +83,10 @@ class DataSource {
     }
 
     func loadMovieReview() {
-        TheMovieProject.APIClient.loadMovieReview(movie_id: 550, api_key: Constants.ProductionServer.api_key, language: Constants.ProductionServer.default_lang, page: 1 ) { result in
+        TheMovieProject.APIClient.loadMovieReview(movieId: 550,
+                                                  apiKey: Constants.ProductionServer.apiKey,
+                                                  language: Constants.ProductionServer.defaultLang,
+                                                  page: 1 ) { result in
             switch result {
             case .success(let movie):
                 print("\n review \n")
@@ -87,7 +98,10 @@ class DataSource {
     }
 
     func loadSimilarMovies() {
-        TheMovieProject.APIClient.loadSimilarMovies(movie_id: 550, api_key: Constants.ProductionServer.api_key, language: Constants.ProductionServer.default_lang, page: 1 ) { result in
+        TheMovieProject.APIClient.loadSimilarMovies(movieId: 550,
+                                                    apiKey: Constants.ProductionServer.apiKey,
+                                                    language: Constants.ProductionServer.defaultLang,
+                                                    page: 1 ) { result in
             switch result {
             case .success(let movie):
                 print("\n similar \n")

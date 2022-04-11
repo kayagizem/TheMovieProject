@@ -3,7 +3,7 @@ import UIKit
 
 @IBDesignable
 class CarouselItem: UIView {
-    static let CAROUSEL_ITEM_NIB = "carouselItem"
+    static let CAROUSELITEMNIB = "carouselItem"
     @IBOutlet var vwContent: UIView!
     @IBOutlet weak var vwBackground: UIView!
     @IBOutlet weak var image: UIImageView!

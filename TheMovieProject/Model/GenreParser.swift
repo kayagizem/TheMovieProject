@@ -14,7 +14,7 @@ class GenreParser {
     var delegate: GenreDelegate?
 
      init() {
-        TheMovieProject.APIClient.loadGenre( api_key: Constants.ProductionServer.api_key) { result in
+         TheMovieProject.APIClient.loadGenre(apiKey: Constants.ProductionServer.apiKey) { result in
             switch result {
             case .success(let genre):
                     guard let genreItems = genre.genres else {return}
@@ -33,8 +33,8 @@ class GenreParser {
     func toGenresArray(_ genreIds: [Int]) -> [String] {
         var result: [String] = []
         for id in genreIds {
-            if let _genre = self.genres[id] {
-                result.append(_genre)
+            if let genre = self.genres[id] {
+                result.append(genre)
             }
         }
         return result

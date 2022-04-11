@@ -16,11 +16,14 @@ class CarouselPageViewController: UIPageViewController {
     }
 
     fileprivate func decoratePageControl() {
-        let pc = UIPageControl.appearance(whenContainedInInstancesOf: [CarouselPageViewController.self])
-        pc.currentPageIndicatorTintColor = UIColor(red: 2.0 / 255.0, green: 148.0 / 255.0, blue: 165.0 / 255.0, alpha: 0.4)
-        pc.pageIndicatorTintColor = .white
-        pc.backgroundColor = UIColor.clear
-        pc.translatesAutoresizingMaskIntoConstraints = false
+        let pageCtrl = UIPageControl.appearance(whenContainedInInstancesOf: [CarouselPageViewController.self])
+        pageCtrl.currentPageIndicatorTintColor = UIColor(red: 2.0 / 255.0,
+                                                         green: 148.0 / 255.0,
+                                                         blue: 165.0 / 255.0,
+                                                         alpha: 0.4)
+        pageCtrl.pageIndicatorTintColor = .white
+        pageCtrl.backgroundColor = UIColor.clear
+        pageCtrl.translatesAutoresizingMaskIntoConstraints = false
     }
 
     fileprivate func populateItems() {
@@ -30,22 +33,23 @@ class CarouselPageViewController: UIPageViewController {
             UIImage(named: "background3")!
         ]
         let backgroundColor: [UIColor] = [.blue, .red, .green]
-        for (index, t) in images.enumerated() {
-            let c = createCarouselItemControler(with: t, with: backgroundColor[index])
-            items.append(c)
+        for (index, tmp) in images.enumerated() {
+            let color = createCarouselItemControler(with: tmp, with: backgroundColor[index])
+            items.append(color)
         }
     }
     fileprivate func createCarouselItemControler(with imageTitle: UIImage?, with color: UIColor?) -> UIViewController {
-        let c = UIViewController()
-        c.view = CarouselItem(imageName: imageTitle, background: color)
-        return c
+        let crsl = UIViewController()
+        crsl.view = CarouselItem(imageName: imageTitle, background: color)
+        return crsl
     }
 }
 
 // MARK: - DataSource
 
 extension CarouselPageViewController: UIPageViewControllerDataSource {
-    func pageViewController(_: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_: UIPageViewController,
+                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = items.firstIndex(of: viewController) else {
             return nil
         }
@@ -61,7 +65,8 @@ extension CarouselPageViewController: UIPageViewControllerDataSource {
         }
         return items[previousIndex]
     }
-    func pageViewController(_: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_: UIPageViewController,
+                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = items.firstIndex(of: viewController) else {
             return nil
         }

@@ -10,64 +10,90 @@ import Alamofire
 
 // TODO: Alamofire should only used in one network component 
 class APIClient {
-    static func loadImage(movie_poster_url: String, completion:@escaping (Result<Results, AFError>) -> Void) {
+    static func loadImage(moviePosterUrl: String, completion:@escaping (Result<Results, AFError>) -> Void) {
         let jsonDecoder = JSONDecoder()
-        AF.request(APIRouter.loadImage(movie_poster_url: movie_poster_url))
+        AF.request(APIRouter.loadImage(moviePosterUrl: moviePosterUrl))
             .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<Results, AFError>) in
                 completion(response.result)
 
             }
     }
 
-    static func loadPopularMovies(api_key: String, language: String, page: Int, region: String, completion:@escaping (Result<Results, AFError>) -> Void) {
+    static func loadPopularMovies(apiKey: String,
+                                  language: String,
+                                  page: Int,
+                                  region: String,
+                                  completion:@escaping (Result<Results, AFError>) -> Void) {
         let jsonDecoder = JSONDecoder()
-        AF.request(APIRouter.loadPopularMovies(api_key: api_key, language: language, page: page, region: region))
+        AF.request(APIRouter.loadPopularMovies(language: language, page: page, region: region))
             .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<Results, AFError>) in
                 completion(response.result)
+                print(response)
             }
     }
 
-    static func loadUpcomingMovies(api_key: String, language: String, page: Int, region: String, completion:@escaping (Result<Results, AFError>) -> Void) {
+    static func loadUpcomingMovies(apiKey: String,
+                                   language: String,
+                                   page: Int, region: String,
+                                   completion:@escaping (Result<Results, AFError>) -> Void) {
         let jsonDecoder = JSONDecoder()
-        AF.request(APIRouter.loadUpcomingMovies(api_key: api_key, language: language, page: page, region: region))
+        AF.request(APIRouter.loadUpcomingMovies( language: language, page: page, region: region))
             .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<Results, AFError>) in
                         completion(response.result)
                     }
             }
 
-        static func loadNow_PlayingMovies(api_key: String, language: String, page: Int, region: String, completion:@escaping (Result<Results, AFError>) -> Void) {
+        static func loadNow_PlayingMovies(apiKey: String,
+                                          language: String,
+                                          page: Int,
+                                          region: String,
+                                          completion:@escaping (Result<Results, AFError>) -> Void) {
             let jsonDecoder = JSONDecoder()
-            AF.request(APIRouter.loadNowPlayingMovies(api_key: api_key, language: language, page: page, region: region))
+            AF.request(APIRouter.loadNowPlayingMovies( language: language, page: page, region: region))
                 .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<Results, AFError>) in
                     completion(response.result)
                 }
         }
-        static func loadMovieDetail(movie_id: Int, api_key: String, language: String, append_to_response: String, completion:@escaping (Result<Results, AFError>) -> Void) {
+        static func loadMovieDetail(movieId: Int,
+                                    apiKey: String,
+                                    language: String,
+                                    appendToResponse: String,
+                                    completion:@escaping (Result<Results, AFError>) -> Void) {
             let jsonDecoder = JSONDecoder()
-            AF.request(APIRouter.loadMovieDetail(movie_id: movie_id, api_key: api_key, language: language, append_to_response: append_to_response))
+            AF.request(APIRouter.loadMovieDetail(movieId: movieId,
+                                                 language: language,
+                                                 appendToResponse: appendToResponse))
                 .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<Results, AFError>) in
                     completion(response.result)
                 }
         }
-        static func loadMovieReview(movie_id: Int, api_key: String, language: String, page: Int, completion:@escaping (Result<Results, AFError>) -> Void) {
+    static func loadMovieReview(movieId: Int,
+                                apiKey: String,
+                                language: String,
+                                page: Int,
+                                completion:@escaping (Result<Results, AFError>) -> Void) {
             let jsonDecoder = JSONDecoder()
-            AF.request(APIRouter.loadMovieReview(movie_id: movie_id, api_key: api_key, language: language, page: page))
+            AF.request(APIRouter.loadMovieReview(movieId: movieId, language: language, page: page))
                 .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<Results, AFError>) in
                     completion(response.result)
                 }
         }
-        static func loadSimilarMovies(movie_id: Int, api_key: String, language: String, page: Int, completion:@escaping (Result<Results, AFError>) -> Void) {
+    static func loadSimilarMovies(movieId: Int,
+                                  apiKey: String,
+                                  language: String,
+                                  page: Int,
+                                  completion:@escaping (Result<Results, AFError>) -> Void) {
             let jsonDecoder = JSONDecoder()
-            AF.request(APIRouter.loadMovieReview(movie_id: movie_id, api_key: api_key, language: language, page: page))
+            AF.request(APIRouter.loadMovieReview(movieId: movieId, language: language, page: page))
                 .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<Results, AFError>) in
                     completion(response.result)
                 }
         }
-        static func loadGenre(api_key: String, completion:@escaping (Result<GenreResponse, AFError>) -> Void) {
+        static func loadGenre(apiKey: String, completion:@escaping (Result<GenreResponse, AFError>) -> Void) {
             let jsonDecoder = JSONDecoder()
-            AF.request(APIRouter.genreList(api_key: api_key))
+            AF.request(APIRouter.genreList)
                 .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<GenreResponse, AFError>) in
                     completion(response.result)
-                }
+            }
         }
     }

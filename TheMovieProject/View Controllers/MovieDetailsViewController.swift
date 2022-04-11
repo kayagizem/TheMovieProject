@@ -27,15 +27,15 @@ class MovieDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         genreParser?.delegate = self
         if let movie = selectedMovie {
-            self.movieTitle.text = movie.original_title
-            self.releaseDate.text = movie.release_date
-            if let language = LanguageType(rawValue: movie.original_language ?? "en") {
+            self.movieTitle.text = movie.originalTitle
+            self.releaseDate.text = movie.releaseDate
+            if let language = LanguageType(rawValue: movie.originalLanguage ?? "en") {
                 self.movieLanguage.text = "Language: \(language.language)"
             }
             self.movieDescription.text = movie.overview
             var urlImage = ""
             do {
-                urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie.poster_path ?? "" )")
+                urlImage = try APIRouter.loadImage(moviePosterUrl: "\(movie.posterPath ?? "" )")
                     .asURLRequest().url?.absoluteString ?? ""
             } catch {
                 debugPrint(error)
@@ -45,8 +45,8 @@ class MovieDetailsViewController: UIViewController {
             self.thumbnail.sd_setImage(with: URL(string: urlImage ),
                                        placeholderImage: UIImage(named: "placeholder.png"))
             self.ratingView.rating = RatingUtilites.map(minRange: 0, maxRange: 10,
-                                                        minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 0.0)
-            self.ratingNumber.text = "\(RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie.vote_average ?? 0.0)) / 10"
+                                                        minDomain: 0, maxDomain: 5, value: movie.voteAverage ?? 0.0)
+            self.ratingNumber.text = "\(RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0, maxDomain: 5, value: movie.voteAverage ?? 0.0)) / 10"
         }
     }
 
@@ -68,7 +68,7 @@ override func viewDidLoad() {
 }
 extension MovieDetailsViewController: GenreDelegate {
     func genreLoaded() {
-        if let genreArray = selectedMovie?.genre_ids {
+        if let genreArray = selectedMovie?.genreIds {
         self.movieGenre.text = genreParser?.toString(genreArray)
         }
     }

@@ -42,19 +42,27 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! SeeAllMoviesCollectionViewCell
+        guard  let cell = sender as? SeeAllMoviesCollectionViewCell else {
+            fatalError("cell could not be initiated")
+        }
         if let indexPath = allMoviesCollection.indexPath(for: cell) {
             if  type == "Most Popular" {
                 let movie = dataSource?.getPopularMovieForIndex(index: indexPath.row)
-                let movieDetailsViewController = segue.destination as! MovieDetailsViewController
+                guard let movieDetailsViewController = segue.destination as? MovieDetailsViewController else {
+                    fatalError("view controller could not sent")
+                }
                 movieDetailsViewController.selectedMovie = movie
             } else if  type == "Upcoming" {
                 let movie = dataSource?.getUpcomingMovieForIndex(index: indexPath.row)
-                let movieDetailsViewController = segue.destination as! MovieDetailsViewController
+                guard let movieDetailsViewController = segue.destination as? MovieDetailsViewController else {
+                    fatalError("view controller could not sent")
+                }
                 movieDetailsViewController.selectedMovie = movie
             } else {
                 let movie = dataSource?.getNowPlayingMovieForIndex(index: indexPath.row)
-                let movieDetailsViewController = segue.destination as! MovieDetailsViewController
+                guard let movieDetailsViewController = segue.destination as? MovieDetailsViewController else {
+                    fatalError("view controller could not sent")
+                }
                 movieDetailsViewController.selectedMovie = movie
             }
         }
@@ -84,8 +92,10 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
     -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SeeAll", for: indexPath)
-        as! SeeAllMoviesCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SeeAll", for: indexPath)
+                as? SeeAllMoviesCollectionViewCell else {
+                    fatalError("cell could not initiated")
+                }
         var movie: Movie?
         if  type == "Most Popular"{
             movie = dataSource?.getPopularMovieForIndex(index: indexPath.row)
@@ -96,10 +106,10 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
         }
         let margins = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
         cell.frame = cell.frame.inset(by: margins)
-        cell.movieLabel.text = movie?.original_title
+        cell.movieLabel.text = movie?.originalTitle
         var urlImage = ""
         do {
-            urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie?.poster_path ?? "")")
+            urlImage = try APIRouter.loadImage(moviePosterUrl: "\(movie?.posterPath ?? "")")
                 .asURLRequest().url?.absoluteString ?? ""
         } catch {
             debugPrint(error)
@@ -107,7 +117,7 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
         cell.moviePosterImageView.sd_setImage(with: URL(string: urlImage ),
                                               placeholderImage: UIImage(named: "placeholder.png"))
         cell.ratingView.rating = RatingUtilites.map(minRange: 0, maxRange: 10, minDomain: 0,
-                                                    maxDomain: 5, value: movie?.vote_average ?? 60.0)
+                                                    maxDomain: 5, value: movie?.voteAverage ?? 60.0)
         return cell
     }
 
@@ -132,9 +142,11 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard: UIStoryboard? = UIStoryboard(name: "MovieDetailView", bundle: nil)
-        let movieDetailsViewController: MovieDetailsViewController =
+        guard let movieDetailsViewController: MovieDetailsViewController =
         storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController")
-        as! MovieDetailsViewController
+                as? MovieDetailsViewController else {
+                    fatalError()
+                }
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
         if type == "NowPlaying"{
             movieDetailsViewController.selectedMovie = dataSource?.getNowPlayingMovieForIndex(index: indexPath.row)

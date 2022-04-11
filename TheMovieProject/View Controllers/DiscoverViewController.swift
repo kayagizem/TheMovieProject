@@ -16,7 +16,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
 
     @IBAction func upcomingTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "MoviesAllView", bundle: nil)
-        guard let moviesListViewController = storyboard.instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
+        guard let moviesListViewController = storyboard
+                .instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
             fatalError("Incorrect storyboard or view controller identifier.")
         }
         moviesListViewController.type = "Upcoming"
@@ -26,7 +27,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
 
     @IBAction func mostPopularTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "MoviesAllView", bundle: nil)
-        guard let moviesListViewController = storyboard.instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
+        guard let moviesListViewController = storyboard
+                .instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
             fatalError("Incorrect storyboard or view controller identifier.")
         }
         moviesListViewController.type = "Most Popular"
@@ -36,7 +38,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
 
     @IBAction func nowPlayingTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "MoviesAllView", bundle: nil)
-        guard let moviesListViewController = storyboard.instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
+        guard let moviesListViewController = storyboard
+                .instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
             fatalError("Incorrect storyboard or view controller identifier.")
         }
         moviesListViewController.type = "NowPlaying"
@@ -103,9 +106,11 @@ extension DiscoverViewController: DataSourceDelegate {
 extension DiscoverViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard: UIStoryboard? = UIStoryboard(name: "MovieDetailView", bundle: nil)
-        let movieDetailsViewController: MovieDetailsViewController =
+       guard let movieDetailsViewController: MovieDetailsViewController =
         storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController")
-        as! MovieDetailsViewController
+                as? MovieDetailsViewController else {
+                    fatalError("storyboard could not be initiated")
+                }
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
         if collectionView == nowPlayingMoviesCollection {
             movieDetailsViewController.selectedMovie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
@@ -136,40 +141,42 @@ extension DiscoverViewController: UICollectionViewDataSource {
                 fatalError("Invalid cell identifier.")
             }
             let movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
-            cell.movieLabel.text = movie.original_title
+            cell.movieLabel.text = movie.originalTitle
             cell.movieDuration.text = "Duration"
             var urlImage = ""
             do {
-                urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie.poster_path ?? "")")
+                urlImage = try APIRouter.loadImage(moviePosterUrl: "\(movie.posterPath ?? "")")
                     .asURLRequest().url?.absoluteString ?? ""
             } catch { fatalError("image cannot be cathced")}
             cell.moviePosterImageView.sd_setImage(with: URL(string: urlImage ),
                                                   placeholderImage: UIImage(named: "placeholder.png"))
             return cell
         } else if collectionView == self.upcomingMoviesCollection {
-            guard let cellUpcoming = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCell", for: indexPath) as? DiscoverCollectionViewCell else {
+            guard let cellUpcoming = collectionView
+                    .dequeueReusableCell(withReuseIdentifier: "DiscoverCell", for: indexPath) as? DiscoverCollectionViewCell else {
                 fatalError("Invalid cell identifier.")
             }
             let movie = dataSource.getUpcomingMovieForIndex(index: indexPath.row)
-            cellUpcoming.movieLabel.text = movie.original_title
+            cellUpcoming.movieLabel.text = movie.originalTitle
             cellUpcoming.movieDuration.text = "Duration"
             var urlImage = ""
             do {
-                urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie.poster_path ?? "")")
+                urlImage = try APIRouter.loadImage(moviePosterUrl: "\(movie.posterPath ?? "")")
                     .asURLRequest().url?.absoluteString ?? ""
             } catch { fatalError("image cannot be cathced")}
             cellUpcoming.moviePosterImageView
                 .sd_setImage(with: URL(string: urlImage ), placeholderImage: UIImage(named: "placeholder.png"))
             return cellUpcoming } else {
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCell", for: indexPath) as? DiscoverCollectionViewCell else {
+                guard let cell = collectionView
+                        .dequeueReusableCell(withReuseIdentifier: "DiscoverCell", for: indexPath) as? DiscoverCollectionViewCell else {
                     fatalError("Invalid cell identifier.")
                 }
             let movie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
-            cell.movieLabel.text = movie.original_title
+            cell.movieLabel.text = movie.originalTitle
             cell.movieDuration.text = "Duration"
             var urlImage = ""
             do {
-                urlImage = try APIRouter.loadImage(movie_poster_url: "\(movie.poster_path ?? "")")
+                urlImage = try APIRouter.loadImage(moviePosterUrl: "\(movie.posterPath ?? "")")
                     .asURLRequest().url?.absoluteString ?? ""
             } catch { fatalError("image cannot be cathced")}
             cell.moviePosterImageView.sd_setImage(with: URL(string: urlImage ),
