@@ -14,7 +14,7 @@ class GenreParser {
     var delegate: GenreDelegate?
 
      init() {
-         TheMovieProject.APIClient.loadGenre(apiKey: Constants.ProductionServer.apiKey) { result in
+         TheMovieProject.APIClient.loadGenre() { result in
             switch result {
             case .success(let genre):
                     guard let genreItems = genre.genres else {return}

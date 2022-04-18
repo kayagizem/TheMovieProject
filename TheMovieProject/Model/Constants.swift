@@ -13,15 +13,16 @@ struct Constants {
         static let imageURL = "https://image.tmdb.org/t/p/original/"
         static let apiKey = "dc190303aea87bdf6e4faa3d59de8c59"
         static let defaultLang = "en-US"
+        static let defaultRegion = "US"
     }
 
     struct APIParameterKey {
-        static let apiKey = "apiKey"
+        static let apiKey = "api_key"
         static let language = "language"
         static let page = "page"
         static let region = "region"
-        static let appendToResponse = "appendToResponse"
-
+        static let appendToResponse = "append_to_response"
+        static let movieId = "movie_id"
     }
 }
 

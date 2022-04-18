@@ -13,14 +13,15 @@ import Cosmos
 
 class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDelegate {
 
-    var isLoadingMore: Bool = false
-    var page: Int = 1
-    var delegate: DataSourceDelegate?
+    private var isLoadingMore: Bool = false
+    private var page: Int = 1
+//    private var delegate: DataSourceDelegate?
     var dataSource: DataSource?
     var type: String = ""
-    var movies: [Movie] = []
-    let ratingCosmos = CosmosView()
-    @IBOutlet weak var allMoviesCollection: UICollectionView!
+
+    private let ratingCosmos = CosmosView()
+
+    @IBOutlet weak private var allMoviesCollection: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,38 +37,11 @@ class SeeMoviesViewController: UIViewController, UIScrollViewDelegate, UICollect
         } else if  type == "Upcoming" {
             dataSource?.loadUpcomingMovies(page: page)
         } else {
-            dataSource?.loadNow_PlayingMovies(page: page)
-        }
-
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard  let cell = sender as? SeeAllMoviesCollectionViewCell else {
-            fatalError("cell could not be initiated")
-        }
-        if let indexPath = allMoviesCollection.indexPath(for: cell) {
-            if  type == "Most Popular" {
-                let movie = dataSource?.getPopularMovieForIndex(index: indexPath.row)
-                guard let movieDetailsViewController = segue.destination as? MovieDetailsViewController else {
-                    fatalError("view controller could not sent")
-                }
-                movieDetailsViewController.selectedMovie = movie
-            } else if  type == "Upcoming" {
-                let movie = dataSource?.getUpcomingMovieForIndex(index: indexPath.row)
-                guard let movieDetailsViewController = segue.destination as? MovieDetailsViewController else {
-                    fatalError("view controller could not sent")
-                }
-                movieDetailsViewController.selectedMovie = movie
-            } else {
-                let movie = dataSource?.getNowPlayingMovieForIndex(index: indexPath.row)
-                guard let movieDetailsViewController = segue.destination as? MovieDetailsViewController else {
-                    fatalError("view controller could not sent")
-                }
-                movieDetailsViewController.selectedMovie = movie
-            }
+            dataSource?.loadNowPlayingMovies(page: page)
         }
     }
 
+    
     func registerNibCell() {
         let  moviesAllCellNib: UINib =  UINib(nibName: "MoviesAllCell", bundle: nil)
         allMoviesCollection.register(moviesAllCellNib, forCellWithReuseIdentifier: "SeeAll")
@@ -132,7 +106,7 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
                 } else if type == "Upcoming"{
                     dataSource?.loadUpcomingMovies(page: page)
                 } else {
-                    dataSource?.loadNow_PlayingMovies(page: page)
+                    dataSource?.loadNowPlayingMovies(page: page)
                 }
                 self.allMoviesCollection.reloadData()
                 self.isLoadingMore = false
@@ -147,16 +121,8 @@ extension SeeMoviesViewController: UICollectionViewDataSource {
                 as? MovieDetailsViewController else {
                     fatalError()
                 }
+        movieDetailsViewController.selectedMovieId = dataSource?.getPopularMovieForIndex(index: indexPath.row).id
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
-        if type == "NowPlaying"{
-            movieDetailsViewController.selectedMovie = dataSource?.getNowPlayingMovieForIndex(index: indexPath.row)
-
-        } else if type == "Most Popular"{
-            movieDetailsViewController.selectedMovie = dataSource?.getPopularMovieForIndex(index: indexPath.row)
-
-        } else {
-            movieDetailsViewController.selectedMovie = dataSource?.getUpcomingMovieForIndex(index: indexPath.row)
-        }
     }
 }
 
