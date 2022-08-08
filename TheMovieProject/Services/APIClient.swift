@@ -8,7 +8,6 @@
 import Foundation
 import Alamofire
 
-// TODO: Alamofire should only used in one network component 
 class APIClient {
     static func loadImage(moviePosterUrl: String, completion: @escaping (Result<Results, AFError>) -> Void) {
         let jsonDecoder = JSONDecoder()
@@ -17,7 +16,7 @@ class APIClient {
                 completion(response.result)
             }
     }
-    
+
     static func loadPopularMovies(page: Int, completion: @escaping (Result<Results, AFError>) -> Void) {
         let jsonDecoder = JSONDecoder()
         AF.request(APIRouter.loadPopularMovies(page: page))
@@ -25,7 +24,7 @@ class APIClient {
                 completion(response.result)
             }
     }
-    
+
     static func loadUpcomingMovies(page: Int, completion: @escaping (Result<Results, AFError>) -> Void) {
         let jsonDecoder = JSONDecoder()
         AF.request(APIRouter.loadUpcomingMovies(page: page))
@@ -33,7 +32,7 @@ class APIClient {
                 completion(response.result)
             }
     }
-    
+
     static func loadNowPlayingMovies(page: Int, completion:@escaping (Result<Results, AFError>) -> Void) {
         let jsonDecoder = JSONDecoder()
         AF.request(APIRouter.loadNowPlayingMovies(page: page))
@@ -41,7 +40,7 @@ class APIClient {
                 completion(response.result)
             }
     }
-    
+
     static func loadMovieDetail(movieId: Int,
                                 appendToResponse: String,
                                 completion: @escaping (Result<Movie, AFError>) -> Void) {
@@ -52,7 +51,7 @@ class APIClient {
             completion(response.result)
         }
     }
-    
+
     static func loadMovieReview(movieId: Int,
                                 page: Int,
                                 completion: @escaping (Result<Results, AFError>) -> Void) {
@@ -62,7 +61,7 @@ class APIClient {
                 completion(response.result)
             }
     }
-    
+
     static func loadSimilarMovies(movieId: Int,
                                   page: Int,
                                   completion: @escaping (Result<Results, AFError>) -> Void) {
@@ -72,12 +71,36 @@ class APIClient {
                 completion(response.result)
             }
     }
-    
+
     static func loadGenre(completion: @escaping (Result<GenreResponse, AFError>) -> Void) {
         let jsonDecoder = JSONDecoder()
         AF.request(APIRouter.genreList)
             .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<GenreResponse, AFError>) in
                 completion(response.result)
             }
+    }
+    static func loadArtists(page: Int, completion: @escaping (Result<PopularArtists, AFError>) -> Void) {
+        let jsonDecoder = JSONDecoder()
+        AF.request(APIRouter.loadArtist(page: page))
+            .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<PopularArtists, AFError>) in
+                completion(response.result)
+            }
+    }
+    static func loadArtistDetail(artistId: Int,
+                                 appendToResponse: String,
+                                 completion: @escaping (Result<Artist, AFError>) -> Void) {
+        let jsonDecoder = JSONDecoder()
+        AF.request(APIRouter.loadArtistDetail(artistId: artistId,
+                                             appendToResponse: appendToResponse))
+        .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<Artist, AFError>) in
+            completion(response.result)
+        }
+    }
+    static func loadArtistImageGallery(artistId: Int, completion: @escaping (Result<ArtistGallery, AFError>) -> Void) {
+        let jsonDecoder = JSONDecoder()
+        AF.request(APIRouter.loadArtistImageGallery(artistId: artistId))
+            .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<ArtistGallery, AFError>) in
+            completion(response.result)
+        }
     }
 }

@@ -17,7 +17,10 @@ enum APIRouter: URLRequestConvertible {
     case loadSimilarMovies(movieId: Int, page: Int)
     case loadImage(moviePosterUrl: String)
     case genreList
-    
+    case loadArtist(page: Int)
+    case loadArtistDetail(artistId: Int, appendToResponse: String)
+    case loadArtistImageGallery(artistId: Int)
+
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
@@ -37,9 +40,15 @@ enum APIRouter: URLRequestConvertible {
             return .get
         case .genreList:
             return .get
+        case .loadArtist:
+            return .get
+        case .loadArtistDetail:
+            return .get
+        case .loadArtistImageGallery:
+            return .get
         }
     }
-    
+
     // MARK: - Path
     private var path: String {
         switch self {
@@ -59,9 +68,15 @@ enum APIRouter: URLRequestConvertible {
             return "\(moviePosterUrl)"
         case .genreList:
             return "/genre/movie/list"
+        case .loadArtist:
+            return "/person/popular"
+        case .loadArtistDetail(let artistId, _):
+            return "/person/\(artistId)"
+        case .loadArtistImageGallery(artistId: let artistId):
+            return "/person/\(artistId)/images"
         }
     }
-    
+
     // MARK: - Parameters
     private var parameters: Parameters? {
         var returnPrm: Parameters = [Constants.APIParameterKey.apiKey: Constants.ProductionServer.apiKey,
@@ -81,11 +96,18 @@ enum APIRouter: URLRequestConvertible {
             return [:]
         case .genreList:
             break
+        case .loadArtist(page: let page):
+            returnPrm[Constants.APIParameterKey.page] = page
+        case .loadArtistDetail(let artistId, let  appendToResponse):
+            returnPrm[Constants.APIParameterKey.artistId] = artistId
+            returnPrm[Constants.APIParameterKey.appendToResponse] = appendToResponse
+        case .loadArtistImageGallery(artistId: let artistId):
+            returnPrm[Constants.APIParameterKey.artistId] = artistId
+            
         }
-        
         return returnPrm
     }
-    
+
     private var baseURL: String {
         switch self {
         case .loadImage:
@@ -94,7 +116,7 @@ enum APIRouter: URLRequestConvertible {
             return Constants.ProductionServer.baseURL
         }
     }
-    
+
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
         let url = try self.baseURL.asURL()
@@ -118,5 +140,5 @@ enum APIRouter: URLRequestConvertible {
         }
         return urlRequest
     }
-    
+
 }

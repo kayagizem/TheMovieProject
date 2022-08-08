@@ -174,15 +174,15 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="movieDescription" destination="tmv-HF-qaa" id="Dob-gU-6Dp"/>
+                        <outlet property="movieDescription" destination="tmv-HF-qaa" id="GaP-b8-y98"/>
                         <outlet property="movieGenre" destination="9BJ-iI-okC" id="Lyb-W2-N8r"/>
-                        <outlet property="movieLanguage" destination="cYU-e0-ZmS" id="3yw-2c-0LX"/>
-                        <outlet property="moviePoster" destination="Qwz-m6-Sxr" id="RdA-Ta-2Sw"/>
-                        <outlet property="movieTitle" destination="Fea-uP-oEL" id="DHF-mK-Tq4"/>
-                        <outlet property="ratingNumber" destination="eY8-OZ-3KU" id="gOs-3K-lGY"/>
-                        <outlet property="ratingView" destination="wxf-KL-BT6" id="aHA-t8-WbI"/>
-                        <outlet property="releaseDate" destination="A3k-10-koU" id="k5j-dH-7hW"/>
-                        <outlet property="thumbnail" destination="prn-YQ-AZ5" id="ndj-TH-4Om"/>
+                        <outlet property="movieLanguage" destination="cYU-e0-ZmS" id="dCk-Gk-Prt"/>
+                        <outlet property="moviePoster" destination="Qwz-m6-Sxr" id="Osz-vu-VU0"/>
+                        <outlet property="movieTitle" destination="Fea-uP-oEL" id="PfE-Rb-aLG"/>
+                        <outlet property="ratingNumber" destination="eY8-OZ-3KU" id="8JH-FY-Pq3"/>
+                        <outlet property="ratingView" destination="wxf-KL-BT6" id="wHR-n3-e88"/>
+                        <outlet property="releaseDate" destination="A3k-10-koU" id="HNa-lw-QJT"/>
+                        <outlet property="thumbnail" destination="prn-YQ-AZ5" id="qEf-sA-OKP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

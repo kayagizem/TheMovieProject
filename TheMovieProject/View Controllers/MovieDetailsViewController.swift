@@ -12,31 +12,33 @@ import AlamofireImage
 import SDWebImage
 import Cosmos
 class MovieDetailsViewController: UIViewController {
+
+    @IBOutlet weak var movieGenre: UILabel!
+    private let viewModel: MovieDetailViewModel = MovieDetailViewModel()
+    @IBOutlet weak var movieTitle: UILabel!
+    @IBOutlet weak var ratingView: CosmosView!
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var movieLanguage: UILabel!
-    @IBOutlet weak var movieGenre: UILabel!
-    @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieDescription: UILabel!
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var ratingNumber: UILabel!
-    @IBOutlet weak var ratingView: CosmosView!
 
     var selectedMovieId: Int?
 
     private var selectedMovie: Movie?
     private var genreParser: GenreParser? = GenreParser()
     private var dataSource: MovieDetailDataSource = MovieDetailDataSource()
-
-    override func viewWillAppear(_ animated: Bool) {
+// viewdidload
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.genreParser?.delegate = self
         self.dataSource.delegate = self
         if let movieId = self.selectedMovieId {
             self.dataSource.loadMovieDetail(movieId: movieId)
         }
     }
-
-    private func configure() {
+    func configure(selectedMovie: Movie?) {
         guard let movie = selectedMovie else { return }
         self.movieTitle.text = movie.originalTitle
         self.releaseDate.text = movie.releaseDate
@@ -72,6 +74,6 @@ extension MovieDetailsViewController: GenreDelegate {
 extension MovieDetailsViewController: MovieDetailDataSourceDelegate {
     func onMovieDetailLoaded(movie: Movie) {
         self.selectedMovie = movie
-        self.configure()
+        configure(selectedMovie: movie)
     }
 }

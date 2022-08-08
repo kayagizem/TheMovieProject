@@ -12,7 +12,8 @@ import SDWebImage
 
 class DiscoverViewController: UIViewController, UICollectionViewDelegate {
     var contentOffset: CGFloat = 0
-    var dataSource = DataSource()
+
+    private let viewModel: DiscoverViewModel = DiscoverViewModel()
 
     @IBAction func upcomingTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "MoviesAllView", bundle: nil)
@@ -20,8 +21,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
                 .instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
             fatalError("Incorrect storyboard or view controller identifier.")
         }
-        moviesListViewController.type = "Upcoming"
-        moviesListViewController.dataSource = dataSource
+        moviesListViewController.type = .upcoming
         navigationController?.pushViewController(moviesListViewController, animated: true)
     }
 
@@ -31,8 +31,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
                 .instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
             fatalError("Incorrect storyboard or view controller identifier.")
         }
-        moviesListViewController.type = "Most Popular"
-        moviesListViewController.dataSource = dataSource
+        moviesListViewController.type = .popular
         navigationController?.pushViewController(moviesListViewController, animated: true)
     }
 
@@ -42,8 +41,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
                 .instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
             fatalError("Incorrect storyboard or view controller identifier.")
         }
-        moviesListViewController.type = "NowPlaying"
-        moviesListViewController.dataSource = dataSource
+        moviesListViewController.type = .nowPlaying
         navigationController?.pushViewController(moviesListViewController, animated: true)
     }
 
@@ -53,12 +51,14 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Discover Movies"
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationItem.hidesBackButton = true
+        self.viewModel.delegate = self
         registerNibCell()
-        dataSource.delegate = self
-        dataSource.loadPopularMovies(page: 1)
-        dataSource.loadUpcomingMovies(page: 1)
-        dataSource.loadNowPlayingMovies(page: 1)
-        self.title = "Discover Movies"
+        viewModel.loadMovies(type: .upcoming)
+        viewModel.loadMovies(type: .popular)
+        viewModel.loadMovies(type: .nowPlaying)
     }
 
     func registerNibCell() {
@@ -68,61 +68,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate {
         nowPlayingMoviesCollection.register(nowPlayingCellNib, forCellWithReuseIdentifier: "DiscoverCell")
         let  popularMoviesCellNib: UINib =  UINib(nibName: "DiscoverCell", bundle: nil)
         popularMoviesCollection.register(popularMoviesCellNib, forCellWithReuseIdentifier: "DiscoverCell")
-    }
-
-    func  configurePopularCell(cell: DiscoverCollectionViewCell, indexPath: IndexPath ) -> DiscoverCollectionViewCell {
-    let movie = dataSource.getPopularMovieForIndex(index: indexPath.row)
-    cell.movieLabel.text = movie.originalTitle
-    cell.movieDuration.text = "Duration"
-    var urlImage = ""
-    do {
-        urlImage = try APIRouter.loadImage(moviePosterUrl: "\(movie.posterPath ?? "")")
-            .asURLRequest().url?.absoluteString ?? ""
-    } catch { fatalError("image cannot be cathced")}
-    cell.moviePosterImageView.sd_setImage(with: URL(string: urlImage ),
-                                          placeholderImage: UIImage(named: "placeholder.png"))
-    return cell
-}
-
-    func  configureNowPlayingCell(cell: DiscoverCollectionViewCell,
-                                  indexPath: IndexPath ) -> DiscoverCollectionViewCell {
-    let movie = dataSource.getNowPlayingMovieForIndex(index: indexPath.row)
-    cell.movieLabel.text = movie.originalTitle
-    cell.movieDuration.text = "Duration"
-    var urlImage = ""
-    do {
-        urlImage = try APIRouter.loadImage(moviePosterUrl: "\(movie.posterPath ?? "")")
-            .asURLRequest().url?.absoluteString ?? ""
-    } catch { fatalError("image cannot be cathced")}
-    cell.moviePosterImageView.sd_setImage(with: URL(string: urlImage ),
-                                          placeholderImage: UIImage(named: "placeholder.png"))
-    return cell
-}
-
-    func configureUpcomingCell(cell: DiscoverCollectionViewCell, indexPath: IndexPath ) -> DiscoverCollectionViewCell {
-    let movie = dataSource.getUpcomingMovieForIndex(index: indexPath.row)
-    cell.movieLabel.text = movie.originalTitle
-    cell.movieDuration.text = "Duration"
-    var urlImage = ""
-    do {
-        urlImage = try APIRouter.loadImage(moviePosterUrl: "\(movie.posterPath ?? "")")
-            .asURLRequest().url?.absoluteString ?? ""
-    } catch { fatalError("image cannot be cathced")}
-    cell.moviePosterImageView.sd_setImage(with: URL(string: urlImage ),
-                                          placeholderImage: UIImage(named: "placeholder.png"))
-    return cell
-}
-}
-
-extension DiscoverViewController: DataSourceDelegate {
-    func nowPlayingLoaded() {
-        nowPlayingMoviesCollection.reloadData()
-    }
-    func upcomingLoaded() {
-        upcomingMoviesCollection.reloadData()
-    }
-    func mostPopularLoaded() {
-        popularMoviesCollection.reloadData()
     }
 }
 
@@ -135,14 +80,14 @@ extension DiscoverViewController: UICollectionViewDataSource {
                     fatalError("storyboard could not be initiated")
                 }
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
-        if collectionView == nowPlayingMoviesCollection {
-            movieDetailsViewController.selectedMovieId = dataSource.getNowPlayingMovieForIndex(index: indexPath.row).id
+        if collectionView == upcomingMoviesCollection {
+            movieDetailsViewController.selectedMovieId = viewModel.getUpcomingMovieForIndex(index: indexPath.row).id
 
         } else if collectionView == popularMoviesCollection {
-            movieDetailsViewController.selectedMovieId = dataSource.getPopularMovieForIndex(index: indexPath.row).id
+            movieDetailsViewController.selectedMovieId = viewModel.getPopularMovieForIndex(index: indexPath.row).id
 
         } else {
-            movieDetailsViewController.selectedMovieId = dataSource.getUpcomingMovieForIndex(index: indexPath.row).id
+            movieDetailsViewController.selectedMovieId = viewModel.getNowPlayingMovieForIndex(index: indexPath.row).id
         }
     }
 
@@ -152,9 +97,9 @@ extension DiscoverViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.popularMoviesCollection {
-            return dataSource.getNumberOfPopularMovies()
+            return viewModel.getNumberOfPopularMovies()
         } else if collectionView == self.upcomingMoviesCollection {
-            return dataSource.getNumberOfUpcomingMovies() } else { return dataSource.getNumberOfNowPlayingMovies() }
+            return viewModel.getNumberOfUpcomingMovies() } else { return viewModel.getNumberOfNowPlayingMovies() }
     }
 
     // TODO: to shorten the function, separate into 3 by movies collection type
@@ -167,11 +112,32 @@ extension DiscoverViewController: UICollectionViewDataSource {
         }
 
         if collectionView == self.popularMoviesCollection {
-            return configurePopularCell(cell: cell, indexPath: indexPath)
+            cell.configure(info: viewModel.getInfoPopularMovie(for: indexPath))
         } else if collectionView == self.upcomingMoviesCollection {
-            return configureUpcomingCell(cell: cell, indexPath: indexPath)
+            cell.configure(info: viewModel.getInfoUpcomingMovie(for: indexPath))
         } else {
-            return configureNowPlayingCell(cell: cell, indexPath: indexPath)
+            cell.configure(info: viewModel.getInfoNowPlayingMovie(for: indexPath))
+        }
+        return cell
+    }
+}
+
+extension DiscoverViewController: RequestDelegate {
+    func didUpdate(with state: ViewState) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            switch state {
+            case .idle:
+                break
+            case .loading:
+                break
+            case .success:
+                self.popularMoviesCollection.reloadData()
+                self.upcomingMoviesCollection.reloadData()
+                self.nowPlayingMoviesCollection.reloadData()
+            case .error(let error):
+                break
+            }
         }
     }
 }

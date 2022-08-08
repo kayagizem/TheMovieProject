@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NDq-HZ-qxF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5B9-fn-vRj">
-                                <rect key="frame" x="0.0" y="88" width="414" height="978"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="929"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqY-eK-5MF">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
@@ -177,23 +177,6 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="IJy-6y-KXs"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="QSC-zN-vcN"/>
                             </scrollView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e8t-Ym-vau">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="textShadowColor" red="0.14901960780000001" green="0.68044018750000002" blue="0.68044018750000002" alpha="1" colorSpace="calibratedRGB"/>
-                                </textAttributes>
-                                <textAttributes key="largeTitleTextAttributes">
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="textShadowColor" red="0.14901960780000001" green="0.68044018750000002" blue="0.68044018750000002" alpha="1" colorSpace="calibratedRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Title" id="FyH-id-BHc"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xa7-ud-l83"/>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -205,6 +188,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="POP-ey-K2c"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="414" height="1100"/>
                     <connections>
                         <outlet property="nowPlayingMoviesCollection" destination="UGu-9v-eU4" id="BtO-EW-PVm"/>
@@ -214,41 +198,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGA-lU-odV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2298.5507246376815" y="381.69642857142856"/>
-        </scene>
-        <!--SeeMoviesViewController-->
-        <scene sceneID="ayV-dw-h3l">
-            <objects>
-                <viewControllerPlaceholder storyboardName="MoviesAllView" referencedIdentifier="SeeMoviesViewController" id="AuW-fv-DaH" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="6AS-IK-pjQ"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dOZ-Qz-Ft8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2860.144927536232" y="381.69642857142856"/>
+            <point key="canvasLocation" x="4118.840579710145" y="381.69642857142856"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="fYe-V2-yJL">
+        <scene sceneID="UgZ-Xl-nf5">
             <objects>
-                <navigationController storyboardIdentifier="DiscoverNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8oi-Je-Srd" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NDq-HZ-qxF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="discoverTabbarIcon" id="u7q-dC-PMC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wBw-EY-5ng">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kj8-HN-ERC">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="14"/>
-                            <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="textShadowColor" red="0.14901960780000001" green="0.68044018750000002" blue="0.68044018750000002" alpha="1" colorSpace="calibratedRGB"/>
-                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="JK6-cq-K3M" kind="relationship" relationship="rootViewController" id="Z5R-eZ-sog"/>
+                        <segue destination="JK6-cq-K3M" kind="relationship" relationship="rootViewController" id="cya-2c-7Jj"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cvn-uA-EPw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pDF-zM-Whc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1389.8550724637682" y="381.69642857142856"/>
+            <point key="canvasLocation" x="3208.6956521739135" y="381.69642857142856"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.14901960780000001" green="0.68044018750000002" blue="0.68044018750000002" alpha="1" colorSpace="calibratedRGB"/>
+    <resources>
+        <image name="discoverTabbarIcon" width="40" height="37"/>
+    </resources>
 </document>

@@ -23,6 +23,7 @@ struct Constants {
         static let region = "region"
         static let appendToResponse = "append_to_response"
         static let movieId = "movie_id"
+        static let artistId = "person_id"
     }
 }
 

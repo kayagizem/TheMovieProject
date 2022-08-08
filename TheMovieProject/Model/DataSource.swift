@@ -5,6 +5,7 @@
 //  Created by gizem.kaya on 12.01.2022.
 //
 
+/*
 import Foundation
 import UIKit
 import Alamofire
@@ -111,3 +112,4 @@ class DataSource {
         return nowPlayingMoviesList.count
     }
 }
+*/

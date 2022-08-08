@@ -3,9 +3,8 @@ import UIKit
 
 class CarouselPageViewController: UIPageViewController {
     fileprivate var items: [UIViewController] = []
-    @IBAction func navigateToDashBoard(_ sender: Any) {
-        self.performSegue(withIdentifier: "toDashboard", sender: self)
-    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
@@ -56,6 +55,7 @@ class CarouselPageViewController: UIPageViewController {
         crsl.view = CarouselItem(imageName: imageTitle, background: color)
         return crsl
     }
+    
 }
 
 // MARK: - DataSource
