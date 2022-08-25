@@ -18,7 +18,6 @@ final class SeeMoviesViewModel {
     var upcomingMoviesList: [Movie] = []
     var popularMoviesList: [Movie] = []
     var nowPlayingMoviesList: [Movie] = []
-    var filteredMovies: [Movie] = []
 
     init() {
         self.state = .idle
@@ -26,9 +25,7 @@ final class SeeMoviesViewModel {
 }
 
 extension SeeMoviesViewModel {
-    var numberOfFilteredMovies: Int {
-        filteredMovies.count
-    }
+
     var numberOfUpcomingMovies: Int {
         upcomingMoviesList.count
     }
@@ -50,25 +47,17 @@ extension SeeMoviesViewModel {
         return nowPlayingMoviesList.count
     }
 
-    func getNumberOfFilteredMovies() -> Int {
-        return filteredMovies.count
-    }
-
     func getInfoPopularMovie(for indexPath: IndexPath) -> MovieInfoModel {
         let movie = popularMoviesList[indexPath.row]
-        return MovieInfoModel(name: movie.originalTitle, imageURL: movie.posterPath, rating: movie.voteAverage)
-    }
-    func getInfoFilteredMovie(for indexPath: IndexPath) -> MovieInfoModel {
-        let movie = filteredMovies[indexPath.row]
-        return MovieInfoModel(name: movie.originalTitle, imageURL: movie.posterPath, rating: movie.voteAverage)
+        return MovieInfoModel(name: movie.originalTitle, imageURL: movie.posterPath, rating: movie.voteAverage, id: movie.id)
     }
     func getInfoUpcomingMovie(for indexPath: IndexPath) -> MovieInfoModel {
         let movie = upcomingMoviesList[indexPath.row]
-        return MovieInfoModel(name: movie.originalTitle, imageURL: movie.posterPath, rating: movie.voteAverage)
+        return MovieInfoModel(name: movie.originalTitle, imageURL: movie.posterPath, rating: movie.voteAverage, id: movie.id)
     }
     func getInfoNowPlayingMovie(for indexPath: IndexPath) -> MovieInfoModel {
         let movie = nowPlayingMoviesList[indexPath.row]
-        return MovieInfoModel(name: movie.originalTitle, imageURL: movie.posterPath, rating: movie.voteAverage)
+        return MovieInfoModel(name: movie.originalTitle, imageURL: movie.posterPath, rating: movie.voteAverage, id: movie.id)
     }
 }
 
@@ -129,10 +118,5 @@ extension SeeMoviesViewModel {
     func getNowPlayingMovieForIndex(index: Int) -> Movie {
         let realIndex = index % nowPlayingMoviesList.count
         return nowPlayingMoviesList[realIndex]
-    }
-
-    func getFilteredMovieForIndex(index: Int) -> Movie {
-        let realIndex = index % filteredMovies.count
-        return filteredMovies[realIndex]
     }
 }

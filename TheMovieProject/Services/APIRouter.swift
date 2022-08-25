@@ -138,6 +138,7 @@ enum APIRouter: URLRequestConvertible {
                 urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
             }
         }
+        print(urlRequest)
         return urlRequest
     }
 

@@ -13,10 +13,10 @@ class ArtistImageGalleryCollectionViewCell: UICollectionViewCell {
 
 extension ArtistImageGalleryCollectionViewCell {
 
-    func  configure(info: ArtistInfoModel) {
+    func  configure(info: String) {
     var urlImage = ""
     do {
-        urlImage = try APIRouter.loadImage(moviePosterUrl: "\(info.imageURL ?? "")")
+        urlImage = try APIRouter.loadImage(moviePosterUrl: "\(info)")
             .asURLRequest().url?.absoluteString ?? ""
     } catch { fatalError("image cannot be cathced")}
     self.artistImage.sd_setImage(with: URL(string: urlImage ),

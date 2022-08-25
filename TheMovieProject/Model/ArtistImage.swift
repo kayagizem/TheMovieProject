@@ -8,8 +8,8 @@
 import Foundation
 
 struct ArtistGallery: Codable {
-    let id: Int
-    let profiles: [ArtistImage]?
+    var id: Int
+    var profiles: [ArtistImage]?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -18,13 +18,13 @@ struct ArtistGallery: Codable {
 }
 
 struct ArtistImage: Codable {
-    let aspectRatio: Double
-    let height: Int
-    let iso6391: String
-    let filePath: String
-    let voteAverage: Double
-    let voteCount: Int
-    let width: Int
+    var aspectRatio: Double?
+    var height: Int?
+    var iso6391: String?
+    var filePath: String
+    var voteAverage: Double?
+    var voteCount: Int?
+    var width: Int?
 
     enum CodingKeys: String, CodingKey {
         case filePath = "file_path"

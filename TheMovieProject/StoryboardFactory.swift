@@ -13,6 +13,9 @@ public enum StoryboardFactory: String {
     case tabbar = "TabBarView"
     case artists = "ArtistsView"
     case genres = "GenresView"
+    case seeAll = "MoviesAllView"
+    case seeMovie = "MovieDetailView"
+    case search = "SearchView"
 
     public func storyboard(bundle: Bundle? = nil) -> UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: bundle)

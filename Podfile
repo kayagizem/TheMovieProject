@@ -11,5 +11,6 @@ target 'TheMovieProject' do
   pod 'SDWebImage', '5.0'
   pod 'Cosmos'
   pod 'SwiftLint'
+  pod 'TRMosaicLayout'
 
 end

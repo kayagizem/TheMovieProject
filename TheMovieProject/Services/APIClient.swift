@@ -97,6 +97,8 @@ class APIClient {
         }
     }
     static func loadArtistImageGallery(artistId: Int, completion: @escaping (Result<ArtistGallery, AFError>) -> Void) {
+        print("testt")
+        print(APIRouter.loadArtistImageGallery(artistId: artistId))
         let jsonDecoder = JSONDecoder()
         AF.request(APIRouter.loadArtistImageGallery(artistId: artistId))
             .responseDecodable(decoder: jsonDecoder) { (response: DataResponse<ArtistGallery, AFError>) in

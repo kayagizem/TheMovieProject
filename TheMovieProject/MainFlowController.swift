@@ -21,19 +21,19 @@ final class MainFlowController {
  self.present(tabbar, animated: true)
  */
 
-//MARK: - private properties
+// MARK: - private properties
     private var mainVCFactory: MainVCFactory! = MainVCFactory()
     private var rootNavigationController: UINavigationController {
-         guard let rootNav = self.window.rootViewController as? UINavigationController else {
+        guard let rootNav =  self.window.rootViewController as? UINavigationController else {
              fatalError("There is no root controller for window")
          }
          return rootNav
      }
-//MARK: - public properties
+// MARK: - public properties
     public static let shared = MainFlowController()
     public var window: UIWindow!
 
-//MARK: - functions
+// MARK: - functions
     public func start() {
         rootNavigationController.pushViewController(mainVCFactory.container(), animated: true)
     }
@@ -69,4 +69,3 @@ fileprivate class MainVCFactory {
        return StoryboardFactory.genres.instantiateInitial()
    }
 }
-

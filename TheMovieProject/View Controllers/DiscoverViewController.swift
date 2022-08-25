@@ -10,114 +10,46 @@ import Alamofire
 import AlamofireImage
 import SDWebImage
 
-class DiscoverViewController: UIViewController, UICollectionViewDelegate {
+class DiscoverViewController: UIViewController, UITableViewDelegate {
     var contentOffset: CGFloat = 0
 
+   
+    @IBOutlet weak var tableView: UITableView!
     private let viewModel: DiscoverViewModel = DiscoverViewModel()
-
-    @IBAction func upcomingTapped(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "MoviesAllView", bundle: nil)
-        guard let moviesListViewController = storyboard
-                .instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
-            fatalError("Incorrect storyboard or view controller identifier.")
-        }
-        moviesListViewController.type = .upcoming
-        navigationController?.pushViewController(moviesListViewController, animated: true)
-    }
-
-    @IBAction func mostPopularTapped(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "MoviesAllView", bundle: nil)
-        guard let moviesListViewController = storyboard
-                .instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
-            fatalError("Incorrect storyboard or view controller identifier.")
-        }
-        moviesListViewController.type = .popular
-        navigationController?.pushViewController(moviesListViewController, animated: true)
-    }
-
-    @IBAction func nowPlayingTapped(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "MoviesAllView", bundle: nil)
-        guard let moviesListViewController = storyboard
-                .instantiateViewController(withIdentifier: "SeeMoviesViewController") as? SeeMoviesViewController else {
-            fatalError("Incorrect storyboard or view controller identifier.")
-        }
-        moviesListViewController.type = .nowPlaying
-        navigationController?.pushViewController(moviesListViewController, animated: true)
-    }
-
-    @IBOutlet weak var nowPlayingMoviesCollection: UICollectionView!
-    @IBOutlet weak var upcomingMoviesCollection: UICollectionView!
-    @IBOutlet weak var popularMoviesCollection: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        DiscoverFlowController.shared.rootNV = self.navigationController
         self.navigationItem.title = "Discover Movies"
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationItem.hidesBackButton = true
-        self.viewModel.delegate = self
         registerNibCell()
-        viewModel.loadMovies(type: .upcoming)
-        viewModel.loadMovies(type: .popular)
-        viewModel.loadMovies(type: .nowPlaying)
+        self.viewModel.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.viewModel.getMovieBlocks()
     }
-
+    
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        DiscoverFlowController.shared.goToSearchPage()
+    }
+    
     func registerNibCell() {
-        let  discoverCellNib: UINib =  UINib(nibName: "DiscoverCell", bundle: nil)
-        upcomingMoviesCollection.register(discoverCellNib, forCellWithReuseIdentifier: "DiscoverCell")
-        let  nowPlayingCellNib: UINib =  UINib(nibName: "DiscoverCell", bundle: nil)
-        nowPlayingMoviesCollection.register(nowPlayingCellNib, forCellWithReuseIdentifier: "DiscoverCell")
-        let  popularMoviesCellNib: UINib =  UINib(nibName: "DiscoverCell", bundle: nil)
-        popularMoviesCollection.register(popularMoviesCellNib, forCellWithReuseIdentifier: "DiscoverCell")
+        let tableViewCellNib: UINib = UINib(nibName: "DiscoverTableViewCell", bundle: nil)
+        tableView.register(tableViewCellNib, forCellReuseIdentifier: "DiscoverTableViewCell")
     }
 }
-
-extension DiscoverViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard: UIStoryboard? = UIStoryboard(name: "MovieDetailView", bundle: nil)
-       guard let movieDetailsViewController: MovieDetailsViewController =
-        storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController")
-                as? MovieDetailsViewController else {
-                    fatalError("storyboard could not be initiated")
-                }
-        navigationController?.pushViewController(movieDetailsViewController, animated: true)
-        if collectionView == upcomingMoviesCollection {
-            movieDetailsViewController.selectedMovieId = viewModel.getUpcomingMovieForIndex(index: indexPath.row).id
-
-        } else if collectionView == popularMoviesCollection {
-            movieDetailsViewController.selectedMovieId = viewModel.getPopularMovieForIndex(index: indexPath.row).id
-
-        } else {
-            movieDetailsViewController.selectedMovieId = viewModel.getNowPlayingMovieForIndex(index: indexPath.row).id
-        }
+extension DiscoverViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel.movieBlock.count
     }
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.popularMoviesCollection {
-            return viewModel.getNumberOfPopularMovies()
-        } else if collectionView == self.upcomingMoviesCollection {
-            return viewModel.getNumberOfUpcomingMovies() } else { return viewModel.getNumberOfNowPlayingMovies() }
-    }
-
-    // TODO: to shorten the function, separate into 3 by movies collection type
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
-    -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCell",
-                                                            for: indexPath) as? DiscoverCollectionViewCell else {
-            fatalError("Invalid cell identifier.")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DiscoverTableViewCell") as?
+                DiscoverTableViewCell else {
+            fatalError("no cell found")
         }
-
-        if collectionView == self.popularMoviesCollection {
-            cell.configure(info: viewModel.getInfoPopularMovie(for: indexPath))
-        } else if collectionView == self.upcomingMoviesCollection {
-            cell.configure(info: viewModel.getInfoUpcomingMovie(for: indexPath))
-        } else {
-            cell.configure(info: viewModel.getInfoNowPlayingMovie(for: indexPath))
-        }
+        cell.configure(movieBlock: self.viewModel.movieBlock[indexPath.row])
         return cell
     }
 }
@@ -132,9 +64,7 @@ extension DiscoverViewController: RequestDelegate {
             case .loading:
                 break
             case .success:
-                self.popularMoviesCollection.reloadData()
-                self.upcomingMoviesCollection.reloadData()
-                self.nowPlayingMoviesCollection.reloadData()
+                self.tableView.reloadData()
             case .error(let error):
                 break
             }
