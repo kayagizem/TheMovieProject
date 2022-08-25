@@ -13,6 +13,7 @@ import SDWebImage
 class DiscoverViewController: UIViewController, UITableViewDelegate {
     var contentOffset: CGFloat = 0
 
+
    
     @IBOutlet weak var tableView: UITableView!
     private let viewModel: DiscoverViewModel = DiscoverViewModel()
